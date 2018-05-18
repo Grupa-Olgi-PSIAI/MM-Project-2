@@ -1,0 +1,8 @@
+mm_project:
+    resource: "@MMProjectBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
