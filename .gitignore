@@ -1,3 +1,4 @@
+/logs/*
 /web/bundles/
 /app/bootstrap.php.cache
 /app/cache/*
@@ -11,3 +12,4 @@
 /bin/
 /composer.phar
 /.idea/
+.env
