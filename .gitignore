@@ -13,3 +13,4 @@
 /composer.phar
 /.idea/
 .env
+node_modules/
