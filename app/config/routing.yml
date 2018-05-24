@@ -6,3 +6,6 @@ mm_project:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
