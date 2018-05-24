@@ -1,34 +1,44 @@
 const gulp = require('gulp');
-const minify = require('gulp-minify');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const less = require('gulp-less');
 const path = require('path');
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
+const del = require('del');
 
-const resDir = './web/';
+const publicDir = './web/';
 
 gulp.task('less', function () {
-    return gulp.src(resDir + 'less/**/*.less')
+    return gulp.src(publicDir + 'less/**/*.less')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
-        .pipe(gulp.dest(resDir + 'css'));
+        .pipe(gulp.dest(publicDir + 'css'));
 });
 
 gulp.task('minjs', function () {
-    return gulp.src(resDir + 'js/*.js')
+    return gulp.src(publicDir + 'js/*.js')
         .pipe(concat('min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(resDir + 'dist/'))
+        .pipe(gulp.dest(publicDir + 'dist/'))
 });
 
 gulp.task('mincss', function () {
-    return gulp.src(resDir + 'css/*.css')
+    return gulp.src(publicDir + 'css/*.css')
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(resDir + 'dist/'));
+        .pipe(gulp.dest(publicDir + 'dist/'));
 });
 
-gulp.task('default', gulp.series('less', 'minjs', 'mincss'));
+gulp.task('clean', function () {
+    return del([publicDir + 'css'])
+});
+
+gulp.task('default',
+    gulp.series('less',
+        gulp.series(gulp.parallel('minjs', 'mincss'),
+            'clean'
+        )
+    )
+);
