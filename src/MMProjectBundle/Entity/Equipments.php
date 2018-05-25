@@ -128,7 +128,7 @@ class Equipments
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -146,7 +146,7 @@ class Equipments
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->version;
     }
@@ -164,7 +164,7 @@ class Equipments
     /**
      * @return \DateTime
      */
-    public function getDateCreated(): \DateTime
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
@@ -182,7 +182,7 @@ class Equipments
     /**
      * @return \DateTime
      */
-    public function getLastUpdated(): \DateTime
+    public function getLastUpdated()
     {
         return $this->lastUpdated;
     }
@@ -200,7 +200,7 @@ class Equipments
     /**
      * @return string
      */
-    public function getInventoryNumber(): string
+    public function getInventoryNumber()
     {
         return $this->inventoryNumber;
     }
@@ -218,7 +218,7 @@ class Equipments
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -236,7 +236,7 @@ class Equipments
     /**
      * @return string
      */
-    public function getSerialNumber(): string
+    public function getSerialNumber()
     {
         return $this->serialNumber;
     }
@@ -254,7 +254,7 @@ class Equipments
     /**
      * @return \DateTime
      */
-    public function getValidationDate(): \DateTime
+    public function getValidationDate()
     {
         return $this->validationDate;
     }
@@ -272,7 +272,7 @@ class Equipments
     /**
      * @return \DateTime
      */
-    public function getPurchaseDate(): \DateTime
+    public function getPurchaseDate()
     {
         return $this->purchaseDate;
     }
@@ -290,7 +290,7 @@ class Equipments
     /**
      * @return float
      */
-    public function getPriceNet(): float
+    public function getPriceNet()
     {
         return $this->priceNet;
     }
@@ -308,7 +308,7 @@ class Equipments
     /**
      * @return string
      */
-    public function getNotes(): string
+    public function getNotes()
     {
         return $this->notes;
     }
@@ -326,7 +326,7 @@ class Equipments
     /**
      * @return Invoices
      */
-    public function getInvoice(): Invoices
+    public function getInvoice()
     {
         return $this->invoice;
     }
@@ -344,7 +344,7 @@ class Equipments
     /**
      * @return Users
      */
-    public function getUser(): Users
+    public function getUser()
     {
         return $this->user;
     }

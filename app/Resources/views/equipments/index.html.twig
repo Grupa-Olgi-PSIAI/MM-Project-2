@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Equipments list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Version</th>
+            <th>Datecreated</th>
+            <th>Lastupdated</th>
+            <th>Inventorynumber</th>
+            <th>Name</th>
+            <th>Serialnumber</th>
+            <th>Validationdate</th>
+            <th>Purchasedate</th>
+            <th>Pricenet</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for equipment in equipments %}
+            <tr>
+                <td><a href="{{ path('equipments_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
+                <td>{{ equipment.version }}</td>
+                <td>{% if equipment.dateCreated %}{{ equipment.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if equipment.lastUpdated %}{{ equipment.lastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ equipment.inventoryNumber }}</td>
+                <td>{{ equipment.name }}</td>
+                <td>{{ equipment.serialNumber }}</td>
+                <td>{% if equipment.validationDate %}{{ equipment.validationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if equipment.purchaseDate %}{{ equipment.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ equipment.priceNet }}</td>
+                <td>{{ equipment.notes }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('equipments_show', { 'id': equipment.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('equipments_edit', { 'id': equipment.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('equipments_new') }}">Create a new equipment</a>
+        </li>
+    </ul>
+{% endblock %}

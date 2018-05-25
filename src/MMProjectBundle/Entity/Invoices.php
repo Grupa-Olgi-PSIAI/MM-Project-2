@@ -128,7 +128,7 @@ class Invoices
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -146,7 +146,7 @@ class Invoices
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->version;
     }
@@ -164,7 +164,7 @@ class Invoices
     /**
      * @return \DateTime
      */
-    public function getDateCreated(): \DateTime
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
@@ -182,7 +182,7 @@ class Invoices
     /**
      * @return \DateTime
      */
-    public function getLastUpdated(): \DateTime
+    public function getLastUpdated()
     {
         return $this->lastUpdated;
     }
@@ -200,7 +200,7 @@ class Invoices
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getNumber()
     {
         return $this->number;
     }
@@ -218,7 +218,7 @@ class Invoices
     /**
      * @return \DateTime
      */
-    public function getInvoiceDate(): \DateTime
+    public function getInvoiceDate()
     {
         return $this->invoiceDate;
     }
@@ -236,7 +236,7 @@ class Invoices
     /**
      * @return float
      */
-    public function getAmountNet(): float
+    public function getAmountNet()
     {
         return $this->amountNet;
     }
@@ -254,7 +254,7 @@ class Invoices
     /**
      * @return float
      */
-    public function getAmountGross(): float
+    public function getAmountGross()
     {
         return $this->amountGross;
     }
@@ -272,7 +272,7 @@ class Invoices
     /**
      * @return float
      */
-    public function getAmountTax(): float
+    public function getAmountTax()
     {
         return $this->amountTax;
     }
@@ -290,7 +290,7 @@ class Invoices
     /**
      * @return string
      */
-    public function getCurrency(): string
+    public function getCurrency()
     {
         return $this->currency;
     }
@@ -308,7 +308,7 @@ class Invoices
     /**
      * @return float
      */
-    public function getAmountNetCurrency(): float
+    public function getAmountNetCurrency()
     {
         return $this->amountNetCurrency;
     }
@@ -326,7 +326,7 @@ class Invoices
     /**
      * @return Contractors
      */
-    public function getContractor(): Contractors
+    public function getContractor()
     {
         return $this->contractor;
     }
@@ -344,7 +344,7 @@ class Invoices
     /**
      * @return Files
      */
-    public function getFile(): Files
+    public function getFile()
     {
         return $this->file;
     }

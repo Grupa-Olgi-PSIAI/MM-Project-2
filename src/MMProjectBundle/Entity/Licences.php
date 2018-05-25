@@ -138,7 +138,7 @@ class Licences
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -156,7 +156,7 @@ class Licences
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->version;
     }
@@ -174,7 +174,7 @@ class Licences
     /**
      * @return \DateTime
      */
-    public function getDateCreated(): \DateTime
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
@@ -192,7 +192,7 @@ class Licences
     /**
      * @return \DateTime
      */
-    public function getLastUpdated(): \DateTime
+    public function getLastUpdated()
     {
         return $this->lastUpdated;
     }
@@ -210,7 +210,7 @@ class Licences
     /**
      * @return string
      */
-    public function getInventoryNumber(): string
+    public function getInventoryNumber()
     {
         return $this->inventoryNumber;
     }
@@ -228,7 +228,7 @@ class Licences
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -246,7 +246,7 @@ class Licences
     /**
      * @return string
      */
-    public function getSerialKey(): string
+    public function getSerialKey()
     {
         return $this->serialKey;
     }
@@ -264,7 +264,7 @@ class Licences
     /**
      * @return \DateTime
      */
-    public function getValidationDate(): \DateTime
+    public function getValidationDate()
     {
         return $this->validationDate;
     }
@@ -282,7 +282,7 @@ class Licences
     /**
      * @return \DateTime
      */
-    public function getTechSupportEndDate(): \DateTime
+    public function getTechSupportEndDate()
     {
         return $this->techSupportEndDate;
     }
@@ -300,7 +300,7 @@ class Licences
     /**
      * @return \DateTime
      */
-    public function getPurchaseDate(): \DateTime
+    public function getPurchaseDate()
     {
         return $this->purchaseDate;
     }
@@ -318,7 +318,7 @@ class Licences
     /**
      * @return string
      */
-    public function getNotes(): string
+    public function getNotes()
     {
         return $this->notes;
     }
@@ -336,7 +336,7 @@ class Licences
     /**
      * @return Users
      */
-    public function getUser(): Users
+    public function getUser()
     {
         return $this->user;
     }
@@ -354,7 +354,7 @@ class Licences
     /**
      * @return Files
      */
-    public function getFile(): Files
+    public function getFile()
     {
         return $this->file;
     }
@@ -372,7 +372,7 @@ class Licences
     /**
      * @return Invoices
      */
-    public function getInvoice(): Invoices
+    public function getInvoice()
     {
         return $this->invoice;
     }

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Contractor</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ contractor.id }}</td>
+        </tr>
+        <tr>
+            <th>Version</th>
+            <td>{{ contractor.version }}</td>
+        </tr>
+        <tr>
+            <th>Datecreated</th>
+            <td>{% if contractor.dateCreated %}{{ contractor.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Lastupdated</th>
+            <td>{% if contractor.lastUpdated %}{{ contractor.lastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ contractor.name }}</td>
+        </tr>
+        <tr>
+            <th>Vatid</th>
+            <td>{{ contractor.vatId }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contractors_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('contractors_edit', { 'id': contractor.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

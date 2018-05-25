@@ -59,7 +59,7 @@ class Contractors
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -77,7 +77,7 @@ class Contractors
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->version;
     }
@@ -95,7 +95,7 @@ class Contractors
     /**
      * @return \DateTime
      */
-    public function getDateCreated(): \DateTime
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
@@ -113,7 +113,7 @@ class Contractors
     /**
      * @return \DateTime
      */
-    public function getLastUpdated(): \DateTime
+    public function getLastUpdated()
     {
         return $this->lastUpdated;
     }
@@ -131,7 +131,7 @@ class Contractors
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -149,7 +149,7 @@ class Contractors
     /**
      * @return string
      */
-    public function getVatId(): string
+    public function getVatId()
     {
         return $this->vatId;
     }

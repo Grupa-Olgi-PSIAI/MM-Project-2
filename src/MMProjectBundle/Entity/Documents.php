@@ -93,7 +93,7 @@ class Documents
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -111,7 +111,7 @@ class Documents
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->version;
     }
@@ -129,7 +129,7 @@ class Documents
     /**
      * @return \DateTime
      */
-    public function getDateCreated(): \DateTime
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
@@ -147,7 +147,7 @@ class Documents
     /**
      * @return \DateTime
      */
-    public function getLastUpdated(): \DateTime
+    public function getLastUpdated()
     {
         return $this->lastUpdated;
     }
@@ -165,7 +165,7 @@ class Documents
     /**
      * @return string
      */
-    public function getIdInternal(): string
+    public function getIdInternal()
     {
         return $this->idInternal;
     }
@@ -183,7 +183,7 @@ class Documents
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -201,7 +201,7 @@ class Documents
     /**
      * @return Contractors
      */
-    public function getContractor(): Contractors
+    public function getContractor()
     {
         return $this->contractor;
     }
@@ -219,7 +219,7 @@ class Documents
     /**
      * @return Files
      */
-    public function getFile(): Files
+    public function getFile()
     {
         return $this->file;
     }

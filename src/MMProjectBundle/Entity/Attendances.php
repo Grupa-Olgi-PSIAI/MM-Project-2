@@ -76,7 +76,7 @@ class Attendances
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -94,7 +94,7 @@ class Attendances
     /**
      * @return int
      */
-    public function getVersion(): int
+    public function getVersion()
     {
         return $this->version;
     }
@@ -112,7 +112,7 @@ class Attendances
     /**
      * @return \DateTime
      */
-    public function getDateCreated(): \DateTime
+    public function getDateCreated()
     {
         return $this->dateCreated;
     }
@@ -130,7 +130,7 @@ class Attendances
     /**
      * @return \DateTime
      */
-    public function getLastUpdated(): \DateTime
+    public function getLastUpdated()
     {
         return $this->lastUpdated;
     }
@@ -148,7 +148,7 @@ class Attendances
     /**
      * @return \DateTime
      */
-    public function getTimeIn(): \DateTime
+    public function getTimeIn()
     {
         return $this->timeIn;
     }
@@ -166,7 +166,7 @@ class Attendances
     /**
      * @return \DateTime
      */
-    public function getTimeOut(): \DateTime
+    public function getTimeOut()
     {
         return $this->timeOut;
     }
@@ -184,7 +184,7 @@ class Attendances
     /**
      * @return string
      */
-    public function getNotes(): string
+    public function getNotes()
     {
         return $this->notes;
     }
@@ -202,7 +202,7 @@ class Attendances
     /**
      * @return Users
      */
-    public function getUser(): Users
+    public function getUser()
     {
         return $this->user;
     }
