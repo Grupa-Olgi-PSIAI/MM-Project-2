@@ -7,7 +7,7 @@ const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 const del = require('del');
 
-const resourcesDir = './src/MMProjectBundle/Resources/';
+const resourcesDir = './app/Resources/';
 const publicDir = './web/';
 
 gulp.task('less', function () {
