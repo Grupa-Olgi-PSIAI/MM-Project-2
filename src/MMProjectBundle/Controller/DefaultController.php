@@ -2,8 +2,8 @@
 
 namespace MMProjectBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
@@ -12,6 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MMProjectBundle:Default:login.html.twig');
+        return $this->render('MMProjectBundle:Default:index.html.twig');
     }
 }

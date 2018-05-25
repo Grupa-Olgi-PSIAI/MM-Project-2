@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ asset('dist/login_styles.min.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div id="login_page">
+    <p class="logo">M&M</p>
+    <p class="small">Mini-Management Manager</p>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+</div>
+</body>
+</html>

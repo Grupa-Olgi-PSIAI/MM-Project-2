@@ -7,10 +7,11 @@ const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 const del = require('del');
 
+const resourcesDir = './src/MMProjectBundle/Resources/';
 const publicDir = './web/';
 
 gulp.task('less', function () {
-    return gulp.src(publicDir + 'less/**/*.less')
+    return gulp.src(resourcesDir + 'views/less/**/*.less')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
