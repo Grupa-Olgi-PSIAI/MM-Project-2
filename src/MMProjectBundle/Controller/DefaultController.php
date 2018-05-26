@@ -12,6 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MMProjectBundle:Default:index.html.twig');
+        return $this->render('index.html.twig');
     }
 }

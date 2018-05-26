@@ -1,0 +1,24 @@
+<div id="top-nav">
+    {% if title is defined %}
+        <h1>{{ title }}</h1>
+    {% endif %}
+    <ul id="nav">
+        <li>
+            <a href="{{ path('fos_user_security_logout') }}"><i class="material-icons navbar logout">&#xE5DD;</i></a>
+        </li>
+        <li><a href="{{ path('attendance_index') }}"><i class="material-icons navbar">&#xE8B5;</i></a></li>
+        {% if filter is defined %}
+            <li><a href="{{ filter }}"><i class="material-icons navbar">&#xE152;</i></a></li>
+        {% endif %}
+        {% if search is defined %}
+            <li>
+                <form class="search-bar" action="{{ search }}" method="post">
+                    <input type="search" placeholder="Szukaj..." name="criterium">
+                </form>
+            </li>
+        {% endif %}
+        {% if add is defined %}
+            <li><a href="{{ add }}"><i class="material-icons navbar">&#xE145;</i></a></li>
+        {% endif %}
+    </ul>
+</div>
