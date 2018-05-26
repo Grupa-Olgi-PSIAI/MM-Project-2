@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Equipment list</h1>
+{% block top %}
+    {{ include('nav/top.html.twig', {
+        'title': 'Wyposażenie',
+        'add': path('equipment_new')
+    }) }}
+{% endblock %}
 
+{% block body %}
     <table>
         <thead>
         <tr>
@@ -42,10 +47,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('equipment_new') }}">Create a new equipment</a>
-        </li>
-    </ul>
 {% endblock %}

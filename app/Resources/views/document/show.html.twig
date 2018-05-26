@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Document</h1>
+{% block top %}
+    {{ include('nav/top.html.twig', {
+        'title': 'Dokument'
+    }) }}
+{% endblock %}
 
+{% block body %}
     <table>
         <tbody>
         <tr>

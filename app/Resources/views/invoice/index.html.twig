@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Invoices list</h1>
+{% block top %}
+    {{ include('nav/top.html.twig', {
+        'title': 'Faktury',
+        'add': path('invoice_new')
+    }) }}
+{% endblock %}
 
+{% block body %}
     <table>
         <thead>
         <tr>
@@ -38,10 +43,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('invoice_new') }}">Create a new invoice</a>
-        </li>
-    </ul>
 {% endblock %}

@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Invoice</h1>
+{% block top %}
+    {{ include('nav/top.html.twig', {
+        'title': 'Faktura'
+    }) }}
+{% endblock %}
 
+{% block body %}
     <table>
         <tbody>
         <tr>

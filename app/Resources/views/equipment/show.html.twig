@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block top %}
+    {{ include('nav/top.html.twig', {
+        'title': 'Wyposażenie'
+    }) }}
+{% endblock %}
+
 {% block body %}
     <h1>Equipment</h1>
 
