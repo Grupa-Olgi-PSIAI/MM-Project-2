@@ -20,15 +20,24 @@ class EquipmentController extends Controller
      *
      * @Route("/", name="equipment_index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $equipment = $em->getRepository('MMProjectBundle:Equipment')->findAll();
+        $equipment = $em->getRepository(Equipment::class)->queryAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $equipment,
+            $request->query->getInt('page', 1),
+            10);
 
         return $this->render('equipment/index.html.twig', array(
-            'equipment' => $equipment,
+            'pagination' => $pagination,
         ));
     }
 

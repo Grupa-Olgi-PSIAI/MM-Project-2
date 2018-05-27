@@ -11,21 +11,19 @@
     <table>
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Inventorynumber</th>
-            <th>Name</th>
-            <th>Serialnumber</th>
-            <th>Validationdate</th>
-            <th>Purchasedate</th>
-            <th>Pricenet</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Numer inwentarza', 'equipment.inventoryNumber') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'equipment.name') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Numer seryjny', 'equipment.serialNumber') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Data walidacji', 'equipment.validationDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Data zakupu', 'equipment.purchaseDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Cena netto', 'equipment.priceNet') }}</th>
             <th>Notes</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for equipment in equipment %}
+        {% for equipment in pagination %}
             <tr>
-                <td><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
                 <td>{{ equipment.inventoryNumber }}</td>
                 <td>{{ equipment.name }}</td>
                 <td>{{ equipment.serialNumber }}</td>
@@ -47,4 +45,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}
