@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Document
  *
  * @ORM\Table(name="documents", indexes={@ORM\Index(name="documents_contractor_id_fkey", columns={"contractor_id"}), @ORM\Index(name="documents_files_id_fk", columns={"file_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\DocumentRepository")
  */
 class Document
 {

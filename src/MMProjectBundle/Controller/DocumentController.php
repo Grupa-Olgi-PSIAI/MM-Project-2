@@ -20,15 +20,24 @@ class DocumentController extends Controller
      *
      * @Route("/", name="document_index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $documents = $em->getRepository('MMProjectBundle:Document')->findAll();
+        $documents = $em->getRepository(Document::class)->queryAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $documents,
+            $request->query->getInt('page', 1),
+            10);
 
         return $this->render('document/index.html.twig', array(
-            'documents' => $documents,
+            'pagination' => $pagination,
         ));
     }
 

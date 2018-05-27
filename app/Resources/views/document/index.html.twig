@@ -12,13 +12,13 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Idinternal</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Wewnętrzne ID', 'document.idInternal') }}</th>
             <th>Description</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for document in documents %}
+        {% for document in pagination %}
             <tr>
                 <td><a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
                 <td>{{ document.idInternal }}</td>
@@ -37,4 +37,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}
