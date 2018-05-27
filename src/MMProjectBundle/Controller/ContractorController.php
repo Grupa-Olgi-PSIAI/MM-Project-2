@@ -34,7 +34,7 @@ class ContractorController extends Controller
         $pagination = $paginator->paginate(
             $contractors,
             $request->query->getInt('page', 1),
-            10);
+            $this->getParameter('items_per_page'));
 
         return $this->render('contractor/index.html.twig', array(
             'pagination' => $pagination,

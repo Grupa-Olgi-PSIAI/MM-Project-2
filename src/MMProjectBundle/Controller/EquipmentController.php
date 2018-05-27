@@ -34,7 +34,7 @@ class EquipmentController extends Controller
         $pagination = $paginator->paginate(
             $equipment,
             $request->query->getInt('page', 1),
-            10);
+            $this->getParameter('items_per_page'));
 
         return $this->render('equipment/index.html.twig', array(
             'pagination' => $pagination,

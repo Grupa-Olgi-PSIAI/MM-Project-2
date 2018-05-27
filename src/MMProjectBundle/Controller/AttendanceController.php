@@ -34,7 +34,7 @@ class AttendanceController extends Controller
         $pagination = $paginator->paginate(
             $attendances,
             $request->query->getInt('page', 1),
-            10);
+            $this->getParameter('items_per_page'));
 
         return $this->render('attendance/index.html.twig', array(
             'pagination' => $pagination,

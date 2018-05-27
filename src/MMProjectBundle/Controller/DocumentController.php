@@ -34,7 +34,7 @@ class DocumentController extends Controller
         $pagination = $paginator->paginate(
             $documents,
             $request->query->getInt('page', 1),
-            10);
+            $this->getParameter('items_per_page'));
 
         return $this->render('document/index.html.twig', array(
             'pagination' => $pagination,
