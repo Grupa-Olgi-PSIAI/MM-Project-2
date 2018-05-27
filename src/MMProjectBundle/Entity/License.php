@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * License
  *
  * @ORM\Table(name="licences", indexes={@ORM\Index(name="licence_user_id_fkey", columns={"user_id"}), @ORM\Index(name="licences_files_id_fk", columns={"file_id"}), @ORM\Index(name="licences_invoices_id_fk", columns={"invoice_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\LicenseRepository")
  */
 class License
 {

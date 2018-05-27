@@ -11,21 +11,19 @@
     <table>
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Inventorynumber</th>
-            <th>Name</th>
-            <th>Serialkey</th>
-            <th>Validationdate</th>
-            <th>Techsupportenddate</th>
-            <th>Purchasedate</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Numer', 'license.inventoryNumber') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'license.name') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Klucz seryjny', 'license.serialKey') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Data ważności', 'license.validationDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Data wsparcia technicznego', 'license.techSupportEndDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Data zakupu', 'license.purchaseDate') }}</th>
             <th>Notes</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for license in licenses %}
+        {% for license in pagination %}
             <tr>
-                <td><a href="{{ path('license_show', { 'id': license.id }) }}">{{ license.id }}</a></td>
                 <td>{{ license.inventoryNumber }}</td>
                 <td>{{ license.name }}</td>
                 <td>{{ license.serialKey }}</td>
@@ -47,4 +45,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

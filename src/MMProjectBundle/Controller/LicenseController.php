@@ -20,15 +20,24 @@ class LicenseController extends Controller
      *
      * @Route("/", name="license_index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $licenses = $em->getRepository('MMProjectBundle:License')->findAll();
+        $licenses = $em->getRepository(License::class)->queryAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $licenses,
+            $request->query->getInt('page', 1),
+            10);
 
         return $this->render('license/index.html.twig', array(
-            'licenses' => $licenses,
+            'pagination' => $pagination,
         ));
     }
 
