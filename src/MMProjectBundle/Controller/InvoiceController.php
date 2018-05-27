@@ -20,15 +20,24 @@ class InvoiceController extends Controller
      *
      * @Route("/", name="invoice_index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $invoices = $em->getRepository('MMProjectBundle:Invoice')->findAll();
+        $invoices = $em->getRepository(Invoice::class)->queryAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $invoices,
+            $request->query->getInt('page', 1),
+            10);
 
         return $this->render('invoice/index.html.twig', array(
-            'invoices' => $invoices,
+            'pagination' => $pagination,
         ));
     }
 
