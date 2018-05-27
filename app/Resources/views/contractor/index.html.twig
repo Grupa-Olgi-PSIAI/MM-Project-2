@@ -8,16 +8,20 @@
 {% endblock %}
 
 {% block body %}
+
+    <div>
+        {{ knp_pagination_filter(pagination, {'contractor.name' : 'Nazwa'}) }}
+    </div>
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Vatid</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'contractor.name') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'VAT ID', 'contractor.vatId') }}</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for contractor in contractors %}
+        {% for contractor in pagination %}
             <tr>
                 <td>{{ contractor.name }}</td>
                 <td>{{ contractor.vatId }}</td>
@@ -35,4 +39,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

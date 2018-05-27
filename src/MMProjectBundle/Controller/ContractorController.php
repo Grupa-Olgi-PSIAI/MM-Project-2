@@ -20,15 +20,24 @@ class ContractorController extends Controller
      *
      * @Route("/", name="contractor_index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $contractors = $em->getRepository('MMProjectBundle:Contractor')->findAll();
+        $contractors = $em->getRepository(Contractor::class)->queryAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $contractors,
+            $request->query->getInt('page', 1),
+            10);
 
         return $this->render('contractor/index.html.twig', array(
-            'contractors' => $contractors,
+            'pagination' => $pagination,
         ));
     }
 
