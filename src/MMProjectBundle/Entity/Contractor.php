@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Contractor
  *
  * @ORM\Table(name="contractors")
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\ContractorRepository")
  */
 class Contractor

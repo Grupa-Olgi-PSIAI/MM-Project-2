@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Attendance
  *
  * @ORM\Table(name="attendances", indexes={@ORM\Index(name="attendances_user_id_fkey", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\AttendanceRepository")
  */
 class Attendance
 {

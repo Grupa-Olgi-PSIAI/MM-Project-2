@@ -20,15 +20,24 @@ class AttendanceController extends Controller
      *
      * @Route("/", name="attendance_index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $attendances = $em->getRepository('MMProjectBundle:Attendance')->findAll();
+        $attendances = $em->getRepository(Attendance::class)->queryAll();
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $attendances,
+            $request->query->getInt('page', 1),
+            10);
 
         return $this->render('attendance/index.html.twig', array(
-            'attendances' => $attendances,
+            'pagination' => $pagination,
         ));
     }
 
