@@ -3,13 +3,19 @@
 namespace MMProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * License
  *
- * @ORM\Table(name="licences", indexes={@ORM\Index(name="licence_user_id_fkey", columns={"user_id"}), @ORM\Index(name="licences_files_id_fk", columns={"file_id"}), @ORM\Index(name="licences_invoices_id_fk", columns={"invoice_id"})})
+ * @ORM\Table(name="licences", indexes={@ORM\Index(name="licence_user_id_fkey", columns={"user_id"}), @ORM\Index(name="licences_invoices_id_fk", columns={"invoice_id"})})
  * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\LicenseRepository")
+ *
+ * @Vich\Uploadable
  */
 class License
 {
@@ -104,14 +110,18 @@ class License
     private $user;
 
     /**
-     * @var \MMProjectBundle\Entity\File
+     * @var File
      *
-     * @ORM\ManyToOne(targetEntity="File")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="file_id", referencedColumnName="id")
-     * })
+     * @Vich\UploadableField(mapping="file", fileNameProperty="embeddedFile.name", size="embeddedFile.size", mimeType="embeddedFile.mimeType", originalName="embeddedFile.originalName")
      */
     private $file;
+
+    /**
+     * @var EmbeddedFile
+     *
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     */
+    private $embeddedFile;
 
     /**
      * @var \MMProjectBundle\Entity\Invoice
@@ -127,6 +137,7 @@ class License
     {
         $this->dateCreated = new \DateTime();
         $this->lastUpdated = new \DateTime();
+        $this->embeddedFile = new EmbeddedFile();
     }
 
     /**
@@ -336,7 +347,7 @@ class License
     }
 
     /**
-     * @return File
+     * @return File|null
      */
     public function getFile(): ?File
     {
@@ -344,12 +355,34 @@ class License
     }
 
     /**
-     * @param File $file
+     * @param File|UploadedFile $file
      * @return License
      */
-    public function setFile(File $file): License
+    public function setFile(File $file = null): License
     {
         $this->file = $file;
+        if ($file) {
+            $this->lastUpdated = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return EmbeddedFile
+     */
+    public function getEmbeddedFile(): EmbeddedFile
+    {
+        return $this->embeddedFile;
+    }
+
+    /**
+     * @param EmbeddedFile $embeddedFile
+     * @return License
+     */
+    public function setEmbeddedFile(EmbeddedFile $embeddedFile): License
+    {
+        $this->embeddedFile = $embeddedFile;
         return $this;
     }
 

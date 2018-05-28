@@ -3,13 +3,19 @@
 namespace MMProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Document
  *
- * @ORM\Table(name="documents", indexes={@ORM\Index(name="documents_contractor_id_fkey", columns={"contractor_id"}), @ORM\Index(name="documents_files_id_fk", columns={"file_id"})})
+ * @ORM\Table(name="documents", indexes={@ORM\Index(name="documents_contractor_id_fkey", columns={"contractor_id"})})
  * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\DocumentRepository")
+ *
+ * @Vich\Uploadable
  */
 class Document
 {
@@ -63,19 +69,24 @@ class Document
     private $contractor;
 
     /**
-     * @var \MMProjectBundle\Entity\File
+     * @var File
      *
-     * @ORM\ManyToOne(targetEntity="File")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="file_id", referencedColumnName="id")
-     * })
+     * @Vich\UploadableField(mapping="file", fileNameProperty="embeddedFile.name", size="embeddedFile.size", mimeType="embeddedFile.mimeType", originalName="embeddedFile.originalName")
      */
     private $file;
+
+    /**
+     * @var EmbeddedFile
+     *
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     */
+    private $embeddedFile;
 
     public function __construct()
     {
         $this->dateCreated = new \DateTime();
         $this->lastUpdated = new \DateTime();
+        $this->embeddedFile = new EmbeddedFile();
     }
 
     /**
@@ -195,7 +206,7 @@ class Document
     }
 
     /**
-     * @return File
+     * @return File|null
      */
     public function getFile(): ?File
     {
@@ -203,12 +214,34 @@ class Document
     }
 
     /**
-     * @param File $file
+     * @param File|UploadedFile $file
      * @return Document
      */
-    public function setFile(File $file): Document
+    public function setFile(File $file = null): Document
     {
         $this->file = $file;
+        if ($file) {
+            $this->lastUpdated = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return EmbeddedFile
+     */
+    public function getEmbeddedFile(): EmbeddedFile
+    {
+        return $this->embeddedFile;
+    }
+
+    /**
+     * @param EmbeddedFile $embeddedFile
+     * @return Document
+     */
+    public function setEmbeddedFile(EmbeddedFile $embeddedFile): Document
+    {
+        $this->embeddedFile = $embeddedFile;
         return $this;
     }
 }

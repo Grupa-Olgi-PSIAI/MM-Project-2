@@ -6,6 +6,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class InvoiceType extends AbstractType
 {
@@ -23,7 +24,9 @@ class InvoiceType extends AbstractType
                 'class' => 'MMProjectBundle:Contractor',
                 'choice_label' => 'name'
             ])
-            ->add('file');
+            ->add('file', VichFileType::class, [
+                'required' => false,
+            ]);
     }
 
     /**
