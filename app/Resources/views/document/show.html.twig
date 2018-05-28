@@ -29,6 +29,12 @@
             <th>Description</th>
             <td>{{ document.description }}</td>
         </tr>
+        {% if document.embeddedFile.name %}
+            <tr>
+                <th>Plik</th>
+                <td><a href="{{ vich_uploader_asset(document, 'file') }}">Pobierz</a></td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 

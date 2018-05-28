@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class LicenseType extends AbstractType
 {
@@ -29,7 +30,9 @@ class LicenseType extends AbstractType
                     return $user->getFirstName() . ' ' . $user->getLastName();
                 }
             ])
-            ->add('file')
+            ->add('file', VichFileType::class, [
+                'required' => false,
+            ])
             ->add('invoice', EntityType::class, [
                 'class' => 'MMProjectBundle:Invoice',
                 'choice_label' => 'number'

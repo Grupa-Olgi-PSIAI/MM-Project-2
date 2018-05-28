@@ -41,6 +41,12 @@
             <th>Currency</th>
             <td>{{ invoice.currency }}</td>
         </tr>
+        {% if invoice.embeddedFile.name %}
+            <tr>
+                <th>Plik</th>
+                <td><a href="{{ vich_uploader_asset(invoice, 'file') }}">Pobierz</a></td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 

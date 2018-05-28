@@ -3,13 +3,19 @@
 namespace MMProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Invoice
  *
- * @ORM\Table(name="invoices", indexes={@ORM\Index(name="invoices_contractor_id_fkey", columns={"contractor_id"}), @ORM\Index(name="invoices_files_id_fk", columns={"file_id"})})
+ * @ORM\Table(name="invoices", indexes={@ORM\Index(name="invoices_contractor_id_fkey", columns={"contractor_id"})})
  * @ORM\Entity(repositoryClass="MMProjectBundle\Repository\InvoiceRepository")
+ *
+ * @Vich\Uploadable
  */
 class Invoice
 {
@@ -92,19 +98,24 @@ class Invoice
     private $contractor;
 
     /**
-     * @var \MMProjectBundle\Entity\File
+     * @var File
      *
-     * @ORM\ManyToOne(targetEntity="File")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="file_id", referencedColumnName="id")
-     * })
+     * @Vich\UploadableField(mapping="file", fileNameProperty="embeddedFile.name", size="embeddedFile.size", mimeType="embeddedFile.mimeType", originalName="embeddedFile.originalName")
      */
     private $file;
+
+    /**
+     * @var EmbeddedFile
+     *
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     */
+    private $embeddedFile;
 
     public function __construct()
     {
         $this->dateCreated = new \DateTime();
         $this->lastUpdated = new \DateTime();
+        $this->embeddedFile = new EmbeddedFile();
     }
 
     /**
@@ -278,7 +289,7 @@ class Invoice
     }
 
     /**
-     * @return File
+     * @return File|null
      */
     public function getFile(): ?File
     {
@@ -286,12 +297,34 @@ class Invoice
     }
 
     /**
-     * @param File $file
+     * @param File|UploadedFile $file
      * @return Invoice
      */
-    public function setFile(File $file): Invoice
+    public function setFile(File $file = null): Invoice
     {
         $this->file = $file;
+        if ($file) {
+            $this->lastUpdated = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return EmbeddedFile
+     */
+    public function getEmbeddedFile(): EmbeddedFile
+    {
+        return $this->embeddedFile;
+    }
+
+    /**
+     * @param EmbeddedFile $embeddedFile
+     * @return Invoice
+     */
+    public function setEmbeddedFile(EmbeddedFile $embeddedFile): Invoice
+    {
+        $this->embeddedFile = $embeddedFile;
         return $this;
     }
 }
