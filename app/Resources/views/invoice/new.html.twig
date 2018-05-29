@@ -8,6 +8,7 @@
 
 {% block body %}
     {{ form_start(form) }}
+    <div class="material-input">
     {#{{ form_widget(form, { 'attr': {'style': 'position: unset'} }) }}#}
     {{ form_row(form.file, { 'attr': {'style': 'position: unset', 'class': 'material-input'} }) }}
     {{ form_row(form.number, { 'attr': {'style': 'position: unset', 'class': 'material-input'} }) }}
@@ -15,9 +16,9 @@
     {{ form_row(form.amountGross, { 'attr': {'style': 'position: unset'} }) }}
     {{ form_row(form.currency, { 'attr': {'style': 'position: unset'} }) }}
     {{ form_row(form.contractor, { 'attr': {'style': 'position: unset'} }) }}
+</div>
     <input type="submit" value="Create"/>
-    {{ form_end(form) }}
-
+    {#{{ form_end(form) }}#}
     <ul>
         <li>
             <a  class="material-btn"  href="{{ path('invoice_index') }}">Back to the list</a>
