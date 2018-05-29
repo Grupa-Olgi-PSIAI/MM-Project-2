@@ -8,9 +8,10 @@
 {% endblock %}
 
 {% block body %}
-    <form class="search-bar" method="post">
-        <input type="search" placeholder="Szukaj..." name="criterium">
-    </form>
+    <div>
+        {{ knp_pagination_filter(pagination, {'document.idInternal' : 'Wewnętrzne ID'}) }}
+        {{ knp_pagination_filter(pagination, {'document.description' : 'Opis'}) }}
+    </div>
     <table>
         <thead>
         <tr>
