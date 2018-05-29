@@ -32,14 +32,8 @@
                 <td>{{ equipment.priceNet }}</td>
                 <td>{{ equipment.notes }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                            <a class="material-btn" href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>
+                            <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}

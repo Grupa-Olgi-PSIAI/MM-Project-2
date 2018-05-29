@@ -20,18 +20,12 @@
         <tbody>
         {% for document in pagination %}
             <tr>
-                <td><a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
+                <td><a class="material-btn" href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
                 <td>{{ document.idInternal }}</td>
                 <td>{{ document.description }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('document_show', { 'id': document.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('document_edit', { 'id': document.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                <a class="material-btn" href="{{ path('document_show', { 'id': document.id }) }}">show</a>
+                <a class="material-btn" href="{{ path('document_edit', { 'id': document.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}

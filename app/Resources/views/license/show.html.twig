@@ -58,17 +58,9 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('license_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('license_edit', { 'id': license.id }) }}">Edit</a>
-        </li>
-        <li>
+            <a class="material-btn" href="{{ path('license_index') }}">Back to the list</a>
+            <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edit</a>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
+            <input class="material-btn" type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

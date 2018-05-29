@@ -28,14 +28,8 @@
                 <td>{{ invoice.amountGross }}</td>
                 <td>{{ invoice.currency }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('invoice_show', { 'id': invoice.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                            <a class="material-btn" href="{{ path('invoice_show', { 'id': invoice.id }) }}">show</a>
+                            <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}

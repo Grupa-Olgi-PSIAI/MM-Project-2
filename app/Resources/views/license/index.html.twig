@@ -32,14 +32,8 @@
                 <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ license.notes }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('license_show', { 'id': license.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('license_edit', { 'id': license.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                            <a class="material-btn" href="{{ path('license_show', { 'id': license.id }) }}">show</a>
+                            <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
