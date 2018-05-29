@@ -9,8 +9,8 @@
 
 {% block body %}
 
-    <div>
-        {{ knp_pagination_filter(pagination, {'contractor.name' : 'Nazwa'}) }}
+    <div class="material-input">
+        {{ knp_pagination_filter(pagination, {'contractor.name' : 'Nazwa'},  { 'attr': {'class': 'material-btn' } }) }}
     </div>
     <table>
         <thead>
@@ -26,14 +26,8 @@
                 <td>{{ contractor.name }}</td>
                 <td>{{ contractor.vatId }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('contractor_show', { 'id': contractor.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('contractor_edit', { 'id': contractor.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                            <a class="material-btn" href="{{ path('contractor_show', { 'id': contractor.id }) }}">show</a>
+                            <a class="material-btn" href="{{ path('contractor_edit', { 'id': contractor.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
