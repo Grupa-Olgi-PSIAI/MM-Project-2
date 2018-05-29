@@ -8,6 +8,14 @@
 {% endblock %}
 
 {% block body %}
+    <div>
+        {{ knp_pagination_filter(pagination, {
+            'invoice.number' : 'Numer' ,
+            'invoice.amountNet' : 'Kwota netto',
+            'invoice.amountGross' : 'Kwota brutto',
+            'invoice.currency' : 'Waluta'
+        }) }}
+    </div>
     <table>
         <thead>
         <tr>
