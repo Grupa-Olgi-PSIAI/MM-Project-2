@@ -41,6 +41,24 @@ class DocumentController extends Controller
         ));
     }
 
+    public function queryBy($attribute_name, $attribute_value, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $documents = $em->getRepository(Document::class)->findBy(
+            [$attribute_name => $attribute_value]
+        );
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $documents,
+            $request->query->getInt('page', 1),
+            $this->getParameter('items_per_page'));
+
+        return $this->render('document/index.html.twig', array(
+            'pagination' => $pagination,
+        ));
+    }
+
     /**
      * Creates a new document entity.
      *
