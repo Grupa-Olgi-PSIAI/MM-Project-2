@@ -52,15 +52,15 @@
         {% if license.embeddedFile.name %}
             <tr>
                 <th>Plik</th>
-                <td><a href="{{ vich_uploader_asset(license, 'file') }}">Pobierz</a></td>
+                <td><a href="{{ path('license_download', { 'id': license.id }) }}">Pobierz</a></td>
             </tr>
         {% endif %}
         </tbody>
     </table>
 
-            <a class="material-btn" href="{{ path('license_index') }}">Back to the list</a>
-            <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edit</a>
-            {{ form_start(delete_form) }}
-            <input class="material-btn" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+    <a class="material-btn" href="{{ path('license_index') }}">Back to the list</a>
+    <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edit</a>
+    {{ form_start(delete_form) }}
+    <input class="material-btn" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 {% endblock %}

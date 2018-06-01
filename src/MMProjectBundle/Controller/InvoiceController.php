@@ -102,7 +102,8 @@ class InvoiceController extends Controller
     public function editAction(Request $request, Invoice $invoice)
     {
         $deleteForm = $this->createDeleteForm($invoice);
-        $editForm = $this->createForm('MMProjectBundle\Form\InvoiceType', $invoice);
+        $fileUrl = $this->generateUrl('invoice_download', ['id' => $invoice->getId()]);
+        $editForm = $this->createForm('MMProjectBundle\Form\InvoiceType', $invoice, ['fileUrl' => $fileUrl]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -140,6 +141,21 @@ class InvoiceController extends Controller
         }
 
         return $this->redirectToRoute('invoice_index');
+    }
+
+    /**
+     * Downloads an invoice
+     *
+     * @Route("/{id}/download", name="invoice_download")
+     * @Method("GET")
+     *
+     * @param Invoice $invoice
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function downloadFileAction(Invoice $invoice)
+    {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        return $downloadHandler->downloadObject($invoice, $fileField = 'file', $objectClass = null, true);
     }
 
     /**

@@ -120,7 +120,8 @@ class DocumentController extends Controller
     public function editAction(Request $request, Document $document)
     {
         $deleteForm = $this->createDeleteForm($document);
-        $editForm = $this->createForm('MMProjectBundle\Form\DocumentType', $document);
+        $fileUrl = $this->generateUrl('document_download', ['id' => $document->getId()]);
+        $editForm = $this->createForm('MMProjectBundle\Form\DocumentType', $document, ['fileUrl' => $fileUrl]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -158,6 +159,21 @@ class DocumentController extends Controller
         }
 
         return $this->redirectToRoute('document_index');
+    }
+
+    /**
+     * Downloads a document
+     *
+     * @Route("/{id}/download", name="document_download")
+     * @Method("GET")
+     *
+     * @param Document $document
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function downloadFileAction(Document $document)
+    {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        return $downloadHandler->downloadObject($document, $fileField = 'file', $objectClass = null, true);
     }
 
     /**

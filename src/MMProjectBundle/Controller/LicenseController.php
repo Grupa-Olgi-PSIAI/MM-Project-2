@@ -102,7 +102,8 @@ class LicenseController extends Controller
     public function editAction(Request $request, License $license)
     {
         $deleteForm = $this->createDeleteForm($license);
-        $editForm = $this->createForm('MMProjectBundle\Form\LicenseType', $license);
+        $fileUrl = $this->generateUrl('license_download', ['id' => $license->getId()]);
+        $editForm = $this->createForm('MMProjectBundle\Form\LicenseType', $license, ['fileUrl' => $fileUrl]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -140,6 +141,21 @@ class LicenseController extends Controller
         }
 
         return $this->redirectToRoute('license_index');
+    }
+
+    /**
+     * Downloads a license
+     *
+     * @Route("/{id}/download", name="license_download")
+     * @Method("GET")
+     *
+     * @param License $license
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function downloadFileAction(License $license)
+    {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        return $downloadHandler->downloadObject($license, $fileField = 'file', $objectClass = null, true);
     }
 
     /**

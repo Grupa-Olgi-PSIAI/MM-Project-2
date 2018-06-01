@@ -26,6 +26,7 @@ class InvoiceType extends AbstractType
             ])
             ->add('file', VichFileType::class, [
                 'required' => false,
+                'download_uri' => $options['fileUrl'],
             ]);
     }
 
@@ -35,7 +36,8 @@ class InvoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MMProjectBundle\Entity\Invoice'
+            'data_class' => 'MMProjectBundle\Entity\Invoice',
+            'fileUrl' => true
         ));
     }
 

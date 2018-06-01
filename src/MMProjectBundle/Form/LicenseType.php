@@ -32,6 +32,7 @@ class LicenseType extends AbstractType
             ])
             ->add('file', VichFileType::class, [
                 'required' => false,
+                'download_uri' => $options['fileUrl'],
             ])
             ->add('invoice', EntityType::class, [
                 'class' => 'MMProjectBundle:Invoice',
@@ -45,7 +46,8 @@ class LicenseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MMProjectBundle\Entity\License'
+            'data_class' => 'MMProjectBundle\Entity\License',
+            'fileUrl' => true
         ));
     }
 
