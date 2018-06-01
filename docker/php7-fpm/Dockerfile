@@ -21,6 +21,9 @@ RUN "date"
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
+# Install opcache
+RUN docker-php-ext-configure opcache --enable-opcache && docker-php-ext-install opcache
+COPY opcache.ini /usr/local/etc/php/conf.d/
 
 # install xdebug
 RUN pecl install xdebug

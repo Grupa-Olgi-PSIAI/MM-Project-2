@@ -17,3 +17,4 @@ node_modules/
 web/dist/
 /web/files/
 /files/
+/.data/
