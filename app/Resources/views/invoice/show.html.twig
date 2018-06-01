@@ -44,15 +44,15 @@
         {% if invoice.embeddedFile.name %}
             <tr>
                 <th>Plik</th>
-                <td><a href="{{ vich_uploader_asset(invoice, 'file') }}">Pobierz</a></td>
+                <td><a href="{{ path('invoice_download', { 'id': invoice.id }) }}">Pobierz</a></td>
             </tr>
         {% endif %}
         </tbody>
     </table>
 
-            <a class="material-btn" href="{{ path('invoice_index') }}">Back to the list</a>
-            <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edit</a>
-            {{ form_start(delete_form) }}
-            <input class="material-btn" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+    <a class="material-btn" href="{{ path('invoice_index') }}">Back to the list</a>
+    <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edit</a>
+    {{ form_start(delete_form) }}
+    <input class="material-btn" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 {% endblock %}
