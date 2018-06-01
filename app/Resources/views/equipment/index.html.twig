@@ -8,6 +8,16 @@
 {% endblock %}
 
 {% block body %}
+    <div>
+        {{ knp_pagination_filter(pagination, {
+            'equipment.inventoryNumber' : 'Numer inwentarza' ,
+            'equipment.name' : 'Nazwa',
+            'equipment.serialNumber' : 'Numer seryjny',
+            'equipment.validationDate' : 'Data walidacji',
+            'equipment.purchaseDate' : 'Data zakupu',
+            'equipment.priceNet' : 'Cena netto'
+        }) }}
+    </div>
     <table>
         <thead>
         <tr>

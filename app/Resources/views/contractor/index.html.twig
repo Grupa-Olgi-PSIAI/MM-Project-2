@@ -10,7 +10,7 @@
 {% block body %}
 
     <div class="material-input">
-        {{ knp_pagination_filter(pagination, {'contractor.name' : 'Nazwa'},  { 'attr': {'class': 'material-btn' } }) }}
+        {{ knp_pagination_filter(pagination, {'contractor.name' : 'Nazwa', 'contractor.vatId' : 'Vat ID'},  { 'attr': {'class': 'material-btn' } }) }}
     </div>
     <table>
         <thead>

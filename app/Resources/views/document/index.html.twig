@@ -8,6 +8,9 @@
 {% endblock %}
 
 {% block body %}
+    <div>
+        {{ knp_pagination_filter(pagination, {'document.idInternal' : 'Wewnętrzne ID' ,'document.description' : 'Opis'}) }}
+    </div>
     <table>
         <thead>
         <tr>
