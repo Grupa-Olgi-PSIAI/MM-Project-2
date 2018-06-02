@@ -9,26 +9,28 @@
 
 {% block body %}
     <div>
-        {{ knp_pagination_filter(pagination, {'document.idInternal' : 'Wewnętrzne ID' ,'document.description' : 'Opis'}) }}
+        {{ knp_pagination_filter(pagination, {'document.idInternal' : 'idInternal' ,'document.description' : 'description'}) }}
     </div>
     <table>
         <thead>
         <tr>
-            <th>Id</th>
             <th>{{ knp_pagination_sortable(pagination, 'Wewnętrzne ID', 'document.idInternal') }}</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th>Kontrahent</th>
+            <th>Data utworzenia</th>
+            <th>Opis</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
         {% for document in pagination %}
             <tr>
-                <td><a class="material-btn" href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
                 <td>{{ document.idInternal }}</td>
+                <td>{{ document.contractor.name }}</td>
+                <td>{% if document.dateCreated %}{{ document.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ document.description }}</td>
                 <td>
-                <a class="material-btn" href="{{ path('document_show', { 'id': document.id }) }}">show</a>
-                <a class="material-btn" href="{{ path('document_edit', { 'id': document.id }) }}">edit</a>
+                    <a class="material-btn" href="{{ path('document_show', { 'id': document.id }) }}">Szczegóły</a>
+                    <a class="material-btn" href="{{ path('document_edit', { 'id': document.id }) }}">Edycja</a>
                 </td>
             </tr>
         {% endfor %}

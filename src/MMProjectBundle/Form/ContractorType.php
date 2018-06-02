@@ -13,8 +13,8 @@ class ContractorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-            ->add('vatId');
+        $builder->add('name', null, ['label' => 'name'])
+            ->add('vatId', null, ['label' => 'vatId']);
     }
 
     /**

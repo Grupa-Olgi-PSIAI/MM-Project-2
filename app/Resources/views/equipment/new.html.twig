@@ -9,11 +9,11 @@
 {% block body %}
     {{ form_start(form) }}
     <div class="material-input">
-    {{ form_widget(form) }}
+        {{ form_widget(form) }}
         {{ form_row(form.validationDate, {'type' : "data"}) }}
     </div>
-    <input class="material-btn" type="submit" value="Create"/>
+    <input class="material-btn" type="submit" value="Utwórz"/>
     {{ form_end(form) }}
 
-            <a class="material-btn" href="{{ path('equipment_index') }}">Back to the list</a>
+    <a class="material-btn" href="{{ path('equipment_index') }}">Powrót do listy</a>
 {% endblock %}

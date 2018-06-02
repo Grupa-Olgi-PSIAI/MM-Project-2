@@ -1,0 +1,26 @@
+Filter: Filtruj
+name: Nazwa
+vatId: VAT ID
+timeIn: Czas wejścia
+timeOut: Czas wyjścia
+notes: Notatki
+user: Pracownik
+idInternal: Wewnętrzne ID
+description: Opis
+file: Plik
+contractor: Kontrahent
+inventoryNumber: Numer inwentarzowy
+serialNumber: Numer seryjny
+validationDate: Data ważności
+purchaseDate: Data zakupu
+priceNet: Cena netto
+invoice: Faktura
+number: Numer
+internalNumber: Numer wewnętrzny
+invoiceDate: Data faktury
+amountNet: Wartość netto
+amountGross: Wartość brutto
+currency: Waluta
+amountNetCurrency: Wartość netto w walucie
+serialKey: Klucz seryjny
+techSupportEndDate: Data wsparcia technicznego

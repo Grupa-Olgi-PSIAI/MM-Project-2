@@ -10,34 +10,30 @@
     <table>
         <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ attendance.id }}</td>
-        </tr>
-        <tr>
-            <th>Datecreated</th>
+            <th>Data dodania</th>
             <td>{% if attendance.dateCreated %}{{ attendance.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Lastupdated</th>
+            <th>Data aktualizacji</th>
             <td>{% if attendance.lastUpdated %}{{ attendance.lastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Timein</th>
+            <th>Czas wejścia</th>
             <td>{% if attendance.timeIn %}{{ attendance.timeIn|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Timeout</th>
+            <th>Czas wyjścia</th>
             <td>{% if attendance.timeOut %}{{ attendance.timeOut|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Notes</th>
+            <th>Notatki</th>
             <td>{{ attendance.notes }}</td>
         </tr>
         </tbody>
     </table>
-            <a class="material-btn" href="{{ path('attendance_index') }}">Back to the list</a>
-            <a class="material-btn" href="{{ path('attendance_edit', { 'id': attendance.id }) }}">Edit</a>
+    <a class="material-btn" href="{{ path('attendance_index') }}">Powrót do listy</a>
+    <a class="material-btn" href="{{ path('attendance_edit', { 'id': attendance.id }) }}">Edytuj</a>
             {{ form_start(delete_form) }}
-            <input class="material-btn" type="submit" value="Delete">
+    <input class="material-btn" type="submit" value="Usuń">
             {{ form_end(delete_form) }}
 {% endblock %}

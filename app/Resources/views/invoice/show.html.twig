@@ -10,37 +10,49 @@
     <table>
         <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ invoice.id }}</td>
-        </tr>
-        <tr>
-            <th>Datecreated</th>
+            <th>Data utworzenia</th>
             <td>{% if invoice.dateCreated %}{{ invoice.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Lastupdated</th>
+            <th>Data modyfikacji</th>
             <td>{% if invoice.lastUpdated %}{{ invoice.lastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Number</th>
+            <th>Numer</th>
             <td>{{ invoice.number }}</td>
         </tr>
         <tr>
-            <th>Invoicedate</th>
-            <td>{% if invoice.invoiceDate %}{{ invoice.invoiceDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <th>Numer wewnętrzny</th>
+            <td>{{ invoice.internalNumber }}</td>
         </tr>
         <tr>
-            <th>Amountnet</th>
+            <th>Data faktury</th>
+            <td>{% if invoice.invoiceDate %}{{ invoice.invoiceDate|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>{{ 'amountNet'|trans }}</th>
             <td>{{ invoice.amountNet }}</td>
         </tr>
         <tr>
-            <th>Amountgross</th>
+            <th>{{ 'amountGross'|trans }}</th>
             <td>{{ invoice.amountGross }}</td>
         </tr>
         <tr>
-            <th>Currency</th>
+            <th>{{ 'currency'|trans }}</th>
             <td>{{ invoice.currency }}</td>
         </tr>
+        <tr>
+            <th>{{ 'amountNetCurrency'|trans }}</th>
+            <td>{{ invoice.amountNetCurrency }}</td>
+        </tr>
+        {% if invoice.contractor %}
+            <tr>
+                <th>Kontrahent</th>
+                <td>
+                    <a href="{{ path('contractor_show', { 'id': invoice.contractor.id }) }}">{{ invoice.contractor.name }}</a>
+                </td>
+            </tr>
+        {% endif %}
         {% if invoice.embeddedFile.name %}
             <tr>
                 <th>Plik</th>

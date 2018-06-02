@@ -10,12 +10,12 @@
 {% block body %}
     <div>
         {{ knp_pagination_filter(pagination, {
-            'equipment.inventoryNumber' : 'Numer inwentarza' ,
-            'equipment.name' : 'Nazwa',
-            'equipment.serialNumber' : 'Numer seryjny',
-            'equipment.validationDate' : 'Data walidacji',
-            'equipment.purchaseDate' : 'Data zakupu',
-            'equipment.priceNet' : 'Cena netto'
+            'equipment.inventoryNumber' : 'inventoryNumber' ,
+            'equipment.name' : 'name',
+            'equipment.serialNumber' : 'serialNumber',
+            'equipment.validationDate' : 'validationDate',
+            'equipment.purchaseDate' : 'purchaseDate',
+            'equipment.priceNet' : 'priceNet'
         }) }}
     </div>
     <table>
@@ -27,8 +27,8 @@
             <th>{{ knp_pagination_sortable(pagination, 'Data walidacji', 'equipment.validationDate') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'Data zakupu', 'equipment.purchaseDate') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'Cena netto', 'equipment.priceNet') }}</th>
-            <th>Notes</th>
-            <th>Actions</th>
+            <th>Notatki</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -37,13 +37,13 @@
                 <td>{{ equipment.inventoryNumber }}</td>
                 <td>{{ equipment.name }}</td>
                 <td>{{ equipment.serialNumber }}</td>
-                <td>{% if equipment.validationDate %}{{ equipment.validationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if equipment.purchaseDate %}{{ equipment.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if equipment.validationDate %}{{ equipment.validationDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if equipment.purchaseDate %}{{ equipment.purchaseDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ equipment.priceNet }}</td>
                 <td>{{ equipment.notes }}</td>
                 <td>
-                            <a class="material-btn" href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>
-                            <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>
+                    <a class="material-btn" href="{{ path('equipment_show', { 'id': equipment.id }) }}">Szczegóły</a>
+                    <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edycja</a>
                 </td>
             </tr>
         {% endfor %}

@@ -10,45 +10,55 @@
     <table>
         <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ license.id }}</td>
-        </tr>
-        <tr>
-            <th>Datecreated</th>
+            <th>Data utworzenia</th>
             <td>{% if license.dateCreated %}{{ license.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Lastupdated</th>
+            <th>Data modyfikacji</th>
             <td>{% if license.lastUpdated %}{{ license.lastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Inventorynumber</th>
+            <th>{{ 'inventoryNumber'|trans }}</th>
             <td>{{ license.inventoryNumber }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>{{ 'name'|trans }}</th>
             <td>{{ license.name }}</td>
         </tr>
         <tr>
-            <th>Serialkey</th>
+            <th>{{ 'serialKey'|trans }}</th>
             <td>{{ license.serialKey }}</td>
         </tr>
         <tr>
-            <th>Validationdate</th>
-            <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <th>{{ 'validationDate'|trans }}</th>
+            <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Techsupportenddate</th>
-            <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <th>{{ 'techSupportEndDate'|trans }}</th>
+            <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Purchasedate</th>
-            <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <th>{{ 'purchaseDate'|trans }}</th>
+            <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Notes</th>
+            <th>{{ 'notes'|trans }}</th>
             <td>{{ license.notes }}</td>
         </tr>
+        {% if license.invoice %}
+            <tr>
+                <th>{{ 'invoice'|trans }}</th>
+                <td>
+                    <a href="{{ path('invoice_show', { 'id': license.invoice.id}) }}">{{ license.invoice.internalNumber }}</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% if license.user %}
+            <tr>
+                <th>{{ 'user'|trans }}</th>
+                <td>{{ license.user.firstName ~ ' ' ~ license.user.lastName }}</td>
+            </tr>
+        {% endif %}
         {% if license.embeddedFile.name %}
             <tr>
                 <th>Plik</th>
@@ -58,9 +68,9 @@
         </tbody>
     </table>
 
-    <a class="material-btn" href="{{ path('license_index') }}">Back to the list</a>
-    <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edit</a>
+    <a class="material-btn" href="{{ path('license_index') }}">Powrót do listy</a>
+    <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edytuj</a>
     {{ form_start(delete_form) }}
-    <input class="material-btn" type="submit" value="Delete">
+    <input class="material-btn" type="submit" value="Usuń">
     {{ form_end(delete_form) }}
 {% endblock %}

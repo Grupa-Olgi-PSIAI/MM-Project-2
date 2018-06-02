@@ -9,10 +9,10 @@
 {% block body %}
     {{ form_start(form) }}
     <div class="material-input">
-    {{ form_widget(form) }}
+        {{ form_widget(form) }}
     </div>
-    <input class="material-btn" type="submit" value="Create"/>
+    <input class="material-btn" type="submit" value="Utwórz"/>
     {{ form_end(form) }}
 
-            <a class="material-btn" href="{{ path('document_index') }}">Back to the list</a>
+    <a class="material-btn" href="{{ path('document_index') }}">Powrót do listy</a>
 {% endblock %}

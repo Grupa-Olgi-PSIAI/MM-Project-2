@@ -7,58 +7,64 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Equipment</h1>
-
     <table>
         <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ equipment.id }}</td>
-        </tr>
-        <tr>
-            <th>Datecreated</th>
+            <th>Data utworzenia</th>
             <td>{% if equipment.dateCreated %}{{ equipment.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Lastupdated</th>
+            <th>Data modyfikacji</th>
             <td>{% if equipment.lastUpdated %}{{ equipment.lastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Inventorynumber</th>
+            <th>{{ 'inventoryNumber'|trans }}</th>
             <td>{{ equipment.inventoryNumber }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>{{ 'name'|trans }}</th>
             <td>{{ equipment.name }}</td>
         </tr>
         <tr>
-            <th>Serialnumber</th>
+            <th>{{ 'serialNumber'|trans }}</th>
             <td>{{ equipment.serialNumber }}</td>
         </tr>
         <tr>
-            <th>Validationdate</th>
-            <td>{% if equipment.validationDate %}{{ equipment.validationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <th>{{ 'validationDate'|trans }}</th>
+            <td>{% if equipment.validationDate %}{{ equipment.validationDate|date('Y-m-d') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Purchasedate</th>
-            <td>{% if equipment.purchaseDate %}{{ equipment.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <th>{{ 'purchaseDate'|trans }}</th>
+            <td>{% if equipment.purchaseDate %}{{ equipment.purchaseDate|date('Y-m-d') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Pricenet</th>
+            <th>{{ 'priceNet'|trans }}</th>
             <td>{{ equipment.priceNet }}</td>
         </tr>
         <tr>
-            <th>Notes</th>
+            <th>{{ 'notes'|trans }}</th>
             <td>{{ equipment.notes }}</td>
         </tr>
+        {% if equipment.invoice %}
+            <tr>
+                <th>{{ 'invoice'|trans }}</th>
+                <td>
+                    <a href="{{ path('invoice_show', { 'id': equipment.invoice.id}) }}">{{ equipment.invoice.internalNumber }}</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% if equipment.user %}
+            <tr>
+                <th>{{ 'user'|trans }}</th>
+                <td>{{ equipment.user.firstName ~ ' ' ~ equipment.user.lastName }}</td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 
-            <a class="material-btn" href="{{ path('equipment_index') }}">Back to the list</a>
-            <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edit</a>
-            {{ form_start(delete_form) }}
-            <input class="material-btn" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a class="material-btn" href="{{ path('equipment_index') }}">Powrót do listy</a>
+    <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edycja</a>
+    {{ form_start(delete_form) }}
+    <input class="material-btn" type="submit" value="Usuń">
+    {{ form_end(delete_form) }}
 {% endblock %}

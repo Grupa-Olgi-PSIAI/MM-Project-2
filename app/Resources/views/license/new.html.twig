@@ -8,11 +8,11 @@
 
 {% block body %}
     {{ form_start(form) }}
-<div class="material-input">
-    {{ form_widget(form) }}
-</div>
-    <input class="material-btn" type="submit" value="Create"/>
+    <div class="material-input">
+        {{ form_widget(form) }}
+    </div>
+    <input class="material-btn" type="submit" value="Utwórz"/>
     {{ form_end(form) }}
 
-            <a class="material-btn" href="{{ path('license_index') }}">Back to the list</a>
+    <a class="material-btn" href="{{ path('license_index') }}">Powrót do listy</a>
 {% endblock %}

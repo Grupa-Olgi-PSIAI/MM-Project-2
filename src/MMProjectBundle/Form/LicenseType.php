@@ -16,27 +16,30 @@ class LicenseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inventoryNumber')
-            ->add('name')
-            ->add('serialKey')
-            ->add('validationDate')
-            ->add('techSupportEndDate')
-            ->add('purchaseDate')
-            ->add('notes')
+        $builder->add('inventoryNumber', null, ['label' => 'inventoryNumber'])
+            ->add('name', null, ['label' => 'name'])
+            ->add('serialKey', null, ['label' => 'serialKey'])
+            ->add('validationDate', null, ['label' => 'validationDate'])
+            ->add('techSupportEndDate', null, ['label' => 'techSupportEndDate'])
+            ->add('purchaseDate', null, ['label' => 'purchaseDate'])
+            ->add('notes', null, ['label' => 'notes'])
+            ->add('file', VichFileType::class, [
+                'required' => false,
+                'download_uri' => $options['fileUrl'],
+                'label' => 'file'
+            ])
             ->add('user', EntityType::class, [
                 'class' => 'MMProjectBundle:User',
                 'choice_label' => function ($user) {
                     /** @var User $user */
                     return $user->getFirstName() . ' ' . $user->getLastName();
-                }
-            ])
-            ->add('file', VichFileType::class, [
-                'required' => false,
-                'download_uri' => $options['fileUrl'],
+                },
+                'label' => 'user'
             ])
             ->add('invoice', EntityType::class, [
                 'class' => 'MMProjectBundle:Invoice',
-                'choice_label' => 'number'
+                'choice_label' => 'number',
+                'label' => 'invoice'
             ]);
     }
 
