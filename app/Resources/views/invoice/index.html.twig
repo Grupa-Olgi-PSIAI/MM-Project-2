@@ -10,34 +10,38 @@
 {% block body %}
     <div>
         {{ knp_pagination_filter(pagination, {
-            'invoice.number' : 'Numer' ,
-            'invoice.amountNet' : 'Kwota netto',
-            'invoice.amountGross' : 'Kwota brutto',
-            'invoice.currency' : 'Waluta'
+            'invoice.number' : 'number' ,
+            'invoice.amountNet' : 'amountNet',
+            'invoice.amountGross' : 'amountGross',
+            'invoice.currency' : 'currency'
         }) }}
     </div>
     <table>
         <thead>
         <tr>
-            <th>{{ knp_pagination_sortable(pagination, 'Numer', 'invoice.number') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Data', 'invoice.invoiceDate') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Kwota netto', 'invoice.amountNet') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Kwota brutto', 'invoice.amountGross') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Waluta', 'invoice.currency') }}</th>
-            <th>Actions</th>
+            <th>{{ knp_pagination_sortable(pagination, 'number'|trans, 'invoice.number') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'internalNumber'|trans, 'invoice.internalNumber') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'invoiceDate'|trans, 'invoice.invoiceDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'amountNet'|trans, 'invoice.amountNet') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'amountGross'|trans, 'invoice.amountGross') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'currency'|trans, 'invoice.currency') }}</th>
+            <th>{{ 'contractor'|trans }}</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
         {% for invoice in pagination %}
             <tr>
                 <td>{{ invoice.number }}</td>
-                <td>{% if invoice.invoiceDate %}{{ invoice.invoiceDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ invoice.internalNumber }}</td>
+                <td>{% if invoice.invoiceDate %}{{ invoice.invoiceDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ invoice.amountNet }}</td>
                 <td>{{ invoice.amountGross }}</td>
                 <td>{{ invoice.currency }}</td>
+                <td>{% if invoice.contractor %}{{ invoice.contractor.name }}{% endif %}</td>
                 <td>
-                            <a class="material-btn" href="{{ path('invoice_show', { 'id': invoice.id }) }}">show</a>
-                            <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">edit</a>
+                    <a class="material-btn" href="{{ path('invoice_show', { 'id': invoice.id }) }}">Szczegóły</a>
+                    <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edycja</a>
                 </td>
             </tr>
         {% endfor %}

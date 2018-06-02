@@ -15,15 +15,16 @@ class AttendanceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('timeIn')
-            ->add('timeOut')
-            ->add('notes')
+        $builder->add('timeIn', null, ['label' => 'timeIn'])
+            ->add('timeOut', null, ['label' => 'timeOut'])
+            ->add('notes', null, ['label' => 'notes'])
             ->add('user', EntityType::class, [
                 'class' => 'MMProjectBundle:User',
                 'choice_label' => function ($user) {
                     /** @var User $user */
                     return $user->getFirstName() . ' ' . $user->getLastName();
-                }
+                },
+                'label' => 'user'
             ]);
     }
 

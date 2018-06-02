@@ -9,15 +9,15 @@
 
 {% block body %}
     <div>
-        {{ knp_pagination_filter(pagination, {'attendance.timeIn' : 'Czas wejścia', 'attendance.timeOut' : 'Czas wyjścia'}) }}
+        {{ knp_pagination_filter(pagination, {'attendance.timeIn' : 'timeIn', 'attendance.timeOut' : 'timeOut'}) }}
     </div>
     <table>
         <thead>
         <tr>
             <th>{{ knp_pagination_sortable(pagination, 'Czas wejścia', 'attendance.timeIn') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'Czas wyjścia', 'attendance.timeOut') }}</th>
-            <th>Notes</th>
-            <th>Actions</th>
+            <th>Notatki</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -29,10 +29,11 @@
                 <td>
                     <ul>
                         <li>
-                            <a class="material-btn" href="{{ path('attendance_show', { 'id': attendance.id }) }}">show</a>
+                            <a class="material-btn" href="{{ path('attendance_show', { 'id': attendance.id }) }}">Szczegóły</a>
                         </li>
                         <li>
-                            <a class="material-btn" href="{{ path('attendance_edit', { 'id': attendance.id }) }}">edit</a>
+                            <a class="material-btn"
+                               href="{{ path('attendance_edit', { 'id': attendance.id }) }}">Edycja</a>
                         </li>
                     </ul>
                 </td>

@@ -10,14 +10,15 @@
 {% block body %}
 
     <div class="material-input">
-        {{ knp_pagination_filter(pagination, {'contractor.name' : 'Nazwa', 'contractor.vatId' : 'Vat ID'},  { 'attr': {'class': 'material-btn' } }) }}
+        {{ knp_pagination_filter(pagination, {'contractor.name' : 'name', 'contractor.vatId' : 'vatId'},
+            { 'attr': {'class': 'material-btn' } }) }}
     </div>
     <table>
         <thead>
         <tr>
             <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'contractor.name') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'VAT ID', 'contractor.vatId') }}</th>
-            <th>Actions</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -26,8 +27,8 @@
                 <td>{{ contractor.name }}</td>
                 <td>{{ contractor.vatId }}</td>
                 <td>
-                            <a class="material-btn" href="{{ path('contractor_show', { 'id': contractor.id }) }}">show</a>
-                            <a class="material-btn" href="{{ path('contractor_edit', { 'id': contractor.id }) }}">edit</a>
+                    <a class="material-btn" href="{{ path('contractor_show', { 'id': contractor.id }) }}">Szczegóły</a>
+                    <a class="material-btn" href="{{ path('contractor_edit', { 'id': contractor.id }) }}">Edycja</a>
                 </td>
             </tr>
         {% endfor %}

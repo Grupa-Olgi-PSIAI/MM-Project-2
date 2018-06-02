@@ -10,12 +10,12 @@
 {% block body %}
     <div>
         {{ knp_pagination_filter(pagination, {
-            'license.inventoryNumber' : 'Numer' ,
-            'license.name' : 'Nazwa',
-            'license.serialKey' : 'Klucz seryjny',
-            'license.validationDate' : 'Data ważności',
-            'license.techSupportEndDate' : 'Data wsparcia technicznego',
-            'license.purchaseDate' : 'Data zakupu'
+            'license.inventoryNumber' : 'inventoryNumber' ,
+            'license.name' : 'name',
+            'license.serialKey' : 'serialKey',
+            'license.validationDate' : 'validationDate',
+            'license.techSupportEndDate' : 'techSupportEndDate',
+            'license.purchaseDate' : 'purchaseDate'
         }) }}
     </div>
     <table>
@@ -27,8 +27,8 @@
             <th>{{ knp_pagination_sortable(pagination, 'Data ważności', 'license.validationDate') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'Data wsparcia technicznego', 'license.techSupportEndDate') }}</th>
             <th>{{ knp_pagination_sortable(pagination, 'Data zakupu', 'license.purchaseDate') }}</th>
-            <th>Notes</th>
-            <th>Actions</th>
+            <th>Notatki</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -37,13 +37,13 @@
                 <td>{{ license.inventoryNumber }}</td>
                 <td>{{ license.name }}</td>
                 <td>{{ license.serialKey }}</td>
-                <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ license.notes }}</td>
                 <td>
-                            <a class="material-btn" href="{{ path('license_show', { 'id': license.id }) }}">show</a>
-                            <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">edit</a>
+                    <a class="material-btn" href="{{ path('license_show', { 'id': license.id }) }}">Szczegóły</a>
+                    <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edycja</a>
                 </td>
             </tr>
         {% endfor %}

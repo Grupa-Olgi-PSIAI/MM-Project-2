@@ -15,23 +15,25 @@ class EquipmentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inventoryNumber')
-            ->add('name')
-            ->add('serialNumber')
-            ->add('validationDate')
-            ->add('purchaseDate')
-            ->add('priceNet')
-            ->add('notes')
+        $builder->add('inventoryNumber', null, ['label' => 'inventoryNumber'])
+            ->add('name', null, ['label' => 'name'])
+            ->add('serialNumber', null, ['label' => 'serialNumber'])
+            ->add('validationDate', null, ['label' => 'validationDate'])
+            ->add('purchaseDate', null, ['label' => 'purchaseDate'])
+            ->add('priceNet', null, ['label' => 'priceNet'])
+            ->add('notes', null, ['label' => 'notes'])
             ->add('invoice', EntityType::class, [
                 'class' => 'MMProjectBundle:Invoice',
-                'choice_label' => 'number'
+                'choice_label' => 'number',
+                'label' => 'invoice'
             ])
             ->add('user', EntityType::class, [
                 'class' => 'MMProjectBundle:User',
                 'choice_label' => function ($user) {
                     /** @var User $user */
                     return $user->getFirstName() . ' ' . $user->getLastName();
-                }
+                },
+                'label' => 'user'
             ]);
     }
 

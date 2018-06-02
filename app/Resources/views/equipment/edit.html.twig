@@ -9,13 +9,13 @@
 {% block body %}
     {{ form_start(edit_form) }}
     <div class="material-input">
-    {{ form_widget(edit_form) }}
+        {{ form_widget(edit_form) }}
     </div>
-    <input type="submit" value="Edit"/>
+    <input class="material-btn" type="submit" value="Edytuj"/>
     {{ form_end(edit_form) }}
 
-            <a class="material-btn" href="{{ path('equipment_index') }}">Back to the list</a>
-            {{ form_start(delete_form) }}
-            <input class="material-btn" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+    <a class="material-btn" href="{{ path('equipment_index') }}">Powrót do listy</a>
+    {{ form_start(delete_form) }}
+    <input class="material-btn" type="submit" value="Usuń">
+    {{ form_end(delete_form) }}
 {% endblock %}

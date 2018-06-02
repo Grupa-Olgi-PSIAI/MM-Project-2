@@ -11,11 +11,11 @@
     <div class="material-input">
         {{ form_widget(edit_form) }}
     </div>
-    <input class="material-btn" type="submit" value="Edit"/>
+    <input class="material-btn" type="submit" value="Edytuj"/>
     {{ form_end(edit_form) }}
 
-    <a class="material-btn" href="{{ path('contractor_index') }}">Back to the list</a>
+    <a class="material-btn" href="{{ path('contractor_index') }}">Powrót do listy</a>
     {{ form_start(delete_form) }}
-    <input class="material-btn" type="submit" value="Delete">
+    <input class="material-btn" type="submit" value="Usuń">
     {{ form_end(delete_form) }}
 {% endblock %}
