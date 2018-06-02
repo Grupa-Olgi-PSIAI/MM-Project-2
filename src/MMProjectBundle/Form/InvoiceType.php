@@ -16,17 +16,19 @@ class InvoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('number')
+            ->add('internalNumber')
             ->add('invoiceDate')
             ->add('amountNet')
             ->add('amountGross')
             ->add('currency')
-            ->add('contractor', EntityType::class, [
-                'class' => 'MMProjectBundle:Contractor',
-                'choice_label' => 'name'
-            ])
+            ->add('amountNetCurrency')
             ->add('file', VichFileType::class, [
                 'required' => false,
                 'download_uri' => $options['fileUrl'],
+            ])
+            ->add('contractor', EntityType::class, [
+                'class' => 'MMProjectBundle:Contractor',
+                'choice_label' => 'name'
             ]);
     }
 

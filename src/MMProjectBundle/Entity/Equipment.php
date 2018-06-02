@@ -68,14 +68,14 @@ class Equipment
      *
      * @Assert\NotBlank()
      *
-     * @ORM\Column(name="validation_date", type="datetime", nullable=false)
+     * @ORM\Column(name="validation_date", type="date", nullable=false)
      */
     private $validationDate;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="purchase_date", type="datetime", nullable=true)
+     * @ORM\Column(name="purchase_date", type="date", nullable=true)
      */
     private $purchaseDate;
 

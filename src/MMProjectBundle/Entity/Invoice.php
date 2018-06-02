@@ -52,11 +52,20 @@ class Invoice
     private $number;
 
     /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     *
+     * @ORM\Column(name="internal_number", type="string", length=50, nullable=false)
+     */
+    private $internalNumber;
+
+    /**
      * @var \DateTime
      *
      * @Assert\NotBlank()
      *
-     * @ORM\Column(name="invoice_date", type="datetime", nullable=false)
+     * @ORM\Column(name="invoice_date", type="date", nullable=false)
      */
     private $invoiceDate;
 
@@ -86,6 +95,15 @@ class Invoice
      * @ORM\Column(name="currency", type="string", length=10, nullable=false)
      */
     private $currency;
+
+    /**
+     * @var float
+     *
+     * @Assert\NotBlank()
+     *
+     * @ORM\Column(name="amount_net_currency", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $amountNetCurrency;
 
     /**
      * @var \MMProjectBundle\Entity\Contractor
@@ -325,6 +343,42 @@ class Invoice
     public function setEmbeddedFile(EmbeddedFile $embeddedFile): Invoice
     {
         $this->embeddedFile = $embeddedFile;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInternalNumber(): ?string
+    {
+        return $this->internalNumber;
+    }
+
+    /**
+     * @param string $internalNumber
+     * @return Invoice
+     */
+    public function setInternalNumber(string $internalNumber): Invoice
+    {
+        $this->internalNumber = $internalNumber;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmountNetCurrency(): ?float
+    {
+        return $this->amountNetCurrency;
+    }
+
+    /**
+     * @param float $amountNetCurrency
+     * @return Invoice
+     */
+    public function setAmountNetCurrency(float $amountNetCurrency): Invoice
+    {
+        $this->amountNetCurrency = $amountNetCurrency;
         return $this;
     }
 }

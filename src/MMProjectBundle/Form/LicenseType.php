@@ -23,16 +23,16 @@ class LicenseType extends AbstractType
             ->add('techSupportEndDate')
             ->add('purchaseDate')
             ->add('notes')
+            ->add('file', VichFileType::class, [
+                'required' => false,
+                'download_uri' => $options['fileUrl'],
+            ])
             ->add('user', EntityType::class, [
                 'class' => 'MMProjectBundle:User',
                 'choice_label' => function ($user) {
                     /** @var User $user */
                     return $user->getFirstName() . ' ' . $user->getLastName();
                 }
-            ])
-            ->add('file', VichFileType::class, [
-                'required' => false,
-                'download_uri' => $options['fileUrl'],
             ])
             ->add('invoice', EntityType::class, [
                 'class' => 'MMProjectBundle:Invoice',
