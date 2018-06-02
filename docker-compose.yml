@@ -5,8 +5,6 @@ services:
         image: mysql:5.7
         ports:
             - 3306:3306
-        volumes:
-            - ./.data/db:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -21,7 +19,8 @@ services:
             - 9001
         volumes:
             - ${SYMFONY_APP_PATH}:/var/www/symfony
-            - ./logs/symfony:/var/www/symfony/app/logs
+            - ./logs/symfony:/var/www/symfony/app/logs:cached
+            - /var/www/symfony/vendor
     nginx:
         image: nginx
         ports:
@@ -30,7 +29,7 @@ services:
             - php
         volumes:
             - ./docker/nginx/default.template:/etc/nginx/conf.d/default.template
-            - ./logs/nginx/:/var/log/nginx
+            - ./logs/nginx/:/var/log/nginx:cached
         environment:
             - NGINX_HOST=${NGINX_HOST}
         command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"

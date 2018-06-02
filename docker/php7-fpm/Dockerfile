@@ -7,7 +7,8 @@ MAINTAINER Maxence POUTORD <maxence.poutord@gmail.com>
 RUN apt-get update && apt-get install -y \
     openssl \
     git \
-    unzip
+    unzip \
+    libicu-dev
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -24,6 +25,9 @@ RUN docker-php-ext-install pdo pdo_mysql
 # Install opcache
 RUN docker-php-ext-configure opcache --enable-opcache && docker-php-ext-install opcache
 COPY opcache.ini /usr/local/etc/php/conf.d/
+
+# Install intl
+RUN docker-php-ext-configure intl && docker-php-ext-install intl
 
 # install xdebug
 RUN pecl install xdebug
