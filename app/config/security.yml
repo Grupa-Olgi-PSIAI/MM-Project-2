@@ -5,9 +5,22 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_USER:    ROLE_USER
-        ROLE_AUDITOR: ROLE_AUDITOR
-        ROLE_OWNER:   ROLE_OWNER
+        ROLE_AUDITOR:
+            - ROLE_ALLOWED_VIEW_ATTENDANCE
+            - ROLE_ALLOWED_EDIT_ATTENDANCE
+            - ROLE_ALLOWED_VIEW_CONTRACTOR
+            - ROLE_ALLOWED_VIEW_DOCUMENT
+            - ROLE_ALLOWED_VIEW_EQUIPMENT
+            - ROLE_ALLOWED_VIEW_INVOICE
+            - ROLE_ALLOWED_VIEW_LICENSE
+        ROLE_WORKER:
+            - ROLE_AUDITOR
+            - ROLE_ALLOWED_EDIT_CONTRACTOR
+            - ROLE_ALLOWED_EDIT_DOCUMENT
+            - ROLE_ALLOWED_EDIT_EQUIPMENT
+            - ROLE_ALLOWED_EDIT_INVOICE
+            - ROLE_ALLOWED_EDIT_LICENSE
+        ROLE_OWNER:   ROLE_WORKER
 
     providers:
         fos_userbundle:

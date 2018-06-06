@@ -5,6 +5,7 @@ namespace MMProjectBundle\Controller;
 use MMProjectBundle\Entity\Equipment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,6 +21,8 @@ class EquipmentController extends Controller
      *
      * @Route("/", name="equipment_index")
      * @Method("GET")
+     *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_EQUIPMENT')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -46,6 +49,8 @@ class EquipmentController extends Controller
      *
      * @Route("/new", name="equipment_new")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_EQUIPMENT')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -76,6 +81,8 @@ class EquipmentController extends Controller
      * @Route("/{id}", name="equipment_show")
      * @Method("GET")
      *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_EQUIPMENT')")
+     *
      * @param Equipment $equipment
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -94,6 +101,8 @@ class EquipmentController extends Controller
      *
      * @Route("/{id}/edit", name="equipment_edit")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_EQUIPMENT')")
      *
      * @param Request $request
      * @param Equipment $equipment
@@ -123,6 +132,8 @@ class EquipmentController extends Controller
      *
      * @Route("/{id}", name="equipment_delete")
      * @Method("DELETE")
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_EQUIPMENT')")
      *
      * @param Request $request
      * @param Equipment $equipment

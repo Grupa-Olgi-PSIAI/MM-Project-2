@@ -43,8 +43,10 @@
     </table>
 
     <a class="material-btn" href="{{ path('document_index') }}">Powrót do listy</a>
-    <a class="material-btn" href="{{ path('document_edit', { 'id': document.id }) }}">Edytuj</a>
-    {{ form_start(delete_form) }}
-    <input class="material-btn" type="submit" value="Usuń">
-    {{ form_end(delete_form) }}
+    {% if is_granted('ROLE_ALLOWED_EDIT_DOCUMENT') %}
+        <a class="material-btn" href="{{ path('document_edit', { 'id': document.id }) }}">Edytuj</a>
+        {{ form_start(delete_form) }}
+        <input class="material-btn" type="submit" value="Usuń">
+        {{ form_end(delete_form) }}
+    {% endif %}
 {% endblock %}

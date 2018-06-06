@@ -5,6 +5,7 @@ namespace MMProjectBundle\Controller;
 use MMProjectBundle\Entity\License;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,6 +21,8 @@ class LicenseController extends Controller
      *
      * @Route("/", name="license_index")
      * @Method("GET")
+     *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_LICENSE')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -46,6 +49,8 @@ class LicenseController extends Controller
      *
      * @Route("/new", name="license_new")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_LICENSE')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -76,6 +81,8 @@ class LicenseController extends Controller
      * @Route("/{id}", name="license_show")
      * @Method("GET")
      *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_LICENSE')")
+     *
      * @param License $license
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -94,6 +101,8 @@ class LicenseController extends Controller
      *
      * @Route("/{id}/edit", name="license_edit")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_LICENSE')")
      *
      * @param Request $request
      * @param License $license
@@ -125,6 +134,8 @@ class LicenseController extends Controller
      * @Route("/{id}", name="license_delete")
      * @Method("DELETE")
      *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_LICENSE')")
+     *
      * @param Request $request
      * @param License $license
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -148,6 +159,8 @@ class LicenseController extends Controller
      *
      * @Route("/{id}/download", name="license_download")
      * @Method("GET")
+     *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_LICENSE')")
      *
      * @param License $license
      * @return \Symfony\Component\HttpFoundation\StreamedResponse

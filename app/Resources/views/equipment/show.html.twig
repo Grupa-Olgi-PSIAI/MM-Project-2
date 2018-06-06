@@ -63,8 +63,10 @@
     </table>
 
     <a class="material-btn" href="{{ path('equipment_index') }}">Powrót do listy</a>
-    <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edycja</a>
-    {{ form_start(delete_form) }}
-    <input class="material-btn" type="submit" value="Usuń">
-    {{ form_end(delete_form) }}
+    {% if is_granted('ROLE_ALLOWED_EDIT_EQUIPMENT') %}
+        <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edycja</a>
+        {{ form_start(delete_form) }}
+        <input class="material-btn" type="submit" value="Usuń">
+        {{ form_end(delete_form) }}
+    {% endif %}
 {% endblock %}

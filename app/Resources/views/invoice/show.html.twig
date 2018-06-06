@@ -63,8 +63,10 @@
     </table>
 
     <a class="material-btn" href="{{ path('invoice_index') }}">Back to the list</a>
-    <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edit</a>
-    {{ form_start(delete_form) }}
-    <input class="material-btn" type="submit" value="Delete">
-    {{ form_end(delete_form) }}
+    {% if is_granted('ROLE_ALLOWED_EDIT_INVOICE') %}
+        <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edit</a>
+        {{ form_start(delete_form) }}
+        <input class="material-btn" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    {% endif %}
 {% endblock %}

@@ -41,7 +41,9 @@
                 <td>{% if invoice.contractor %}{{ invoice.contractor.name }}{% endif %}</td>
                 <td>
                     <a class="material-btn" href="{{ path('invoice_show', { 'id': invoice.id }) }}">Szczegóły</a>
-                    <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edycja</a>
+                    {% if is_granted('ROLE_ALLOWED_EDIT_INVOICE') %}
+                        <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edycja</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

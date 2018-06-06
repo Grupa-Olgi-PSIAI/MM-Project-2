@@ -28,7 +28,9 @@
                 <td>{{ contractor.vatId }}</td>
                 <td>
                     <a class="material-btn" href="{{ path('contractor_show', { 'id': contractor.id }) }}">Szczegóły</a>
-                    <a class="material-btn" href="{{ path('contractor_edit', { 'id': contractor.id }) }}">Edycja</a>
+                    {% if is_granted('ROLE_ALLOWED_EDIT_CONTRACTOR') %}
+                        <a class="material-btn" href="{{ path('contractor_edit', { 'id': contractor.id }) }}">Edycja</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

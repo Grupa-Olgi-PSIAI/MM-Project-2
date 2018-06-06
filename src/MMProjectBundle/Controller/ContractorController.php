@@ -5,6 +5,7 @@ namespace MMProjectBundle\Controller;
 use MMProjectBundle\Entity\Contractor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,6 +21,8 @@ class ContractorController extends Controller
      *
      * @Route("/", name="contractor_index")
      * @Method("GET")
+     *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_CONTRACTOR')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -46,6 +49,8 @@ class ContractorController extends Controller
      *
      * @Route("/new", name="contractor_new")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_CONTRACTOR')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -76,6 +81,8 @@ class ContractorController extends Controller
      * @Route("/{id}", name="contractor_show")
      * @Method("GET")
      *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_CONTRACTOR')")
+     *
      * @param Contractor $contractor
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -94,6 +101,8 @@ class ContractorController extends Controller
      *
      * @Route("/{id}/edit", name="contractor_edit")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_CONTRACTOR')")
      *
      * @param Request $request
      * @param Contractor $contractor
@@ -123,6 +132,8 @@ class ContractorController extends Controller
      *
      * @Route("/{id}", name="contractor_delete")
      * @Method("DELETE")
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_CONTRACTOR')")
      *
      * @param Request $request
      * @param Contractor $contractor

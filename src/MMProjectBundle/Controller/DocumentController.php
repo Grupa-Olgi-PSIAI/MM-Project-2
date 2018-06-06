@@ -5,6 +5,7 @@ namespace MMProjectBundle\Controller;
 use MMProjectBundle\Entity\Document;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,6 +21,8 @@ class DocumentController extends Controller
      *
      * @Route("/", name="document_index")
      * @Method("GET")
+     *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_DOCUMENT')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -65,6 +68,8 @@ class DocumentController extends Controller
      * @Route("/new", name="document_new")
      * @Method({"GET", "POST"})
      *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_DOCUMENT')")
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -94,6 +99,8 @@ class DocumentController extends Controller
      * @Route("/{id}", name="document_show")
      * @Method("GET")
      *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_DOCUMENT')")
+     *
      * @param Document $document
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -112,6 +119,8 @@ class DocumentController extends Controller
      *
      * @Route("/{id}/edit", name="document_edit")
      * @Method({"GET", "POST"})
+     *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_DOCUMENT')")
      *
      * @param Request $request
      * @param Document $document
@@ -143,6 +152,8 @@ class DocumentController extends Controller
      * @Route("/{id}", name="document_delete")
      * @Method("DELETE")
      *
+     * @Security("has_role('ROLE_ALLOWED_EDIT_DOCUMENT')")
+     *
      * @param Request $request
      * @param Document $document
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -166,6 +177,8 @@ class DocumentController extends Controller
      *
      * @Route("/{id}/download", name="document_download")
      * @Method("GET")
+     *
+     * @Security("has_role('ROLE_ALLOWED_VIEW_DOCUMENT')")
      *
      * @param Document $document
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
