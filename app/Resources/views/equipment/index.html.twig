@@ -32,6 +32,7 @@
         </tr>
         </thead>
         <tbody>
+        {% set sumNet = 0 %}
         {% for equipment in pagination %}
             <tr>
                 <td>{{ equipment.inventoryNumber }}</td>
@@ -48,7 +49,11 @@
                     {% endif %}
                 </td>
             </tr>
+            {% set sumNet = sumNet + equipment.priceNet %}
         {% endfor %}
+        <tr>
+            <td>Suma netto: {{ sumNet }}</td>
+        </tr>
         </tbody>
     </table>
     <div>

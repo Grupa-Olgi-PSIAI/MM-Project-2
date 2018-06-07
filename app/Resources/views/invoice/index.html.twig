@@ -30,6 +30,8 @@
         </tr>
         </thead>
         <tbody>
+        {% set sumNet = 0 %}
+        {% set sumGross = 0 %}
         {% for invoice in pagination %}
             <tr>
                 <td>{{ invoice.number }}</td>
@@ -46,7 +48,13 @@
                     {% endif %}
                 </td>
             </tr>
+            {% set sumNet = sumNet + invoice.amountNet %}
+            {% set sumGross = sumGross + invoice.amountGross %}
         {% endfor %}
+        <tr>
+            <td>Suma netto: {{ sumNet }}</td>
+            <td>Suma brutto: {{ sumGross }}</td>
+        </tr>
         </tbody>
     </table>
     <div>
