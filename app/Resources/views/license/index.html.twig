@@ -37,7 +37,12 @@
                 <td>{{ license.inventoryNumber }}</td>
                 <td>{{ license.name }}</td>
                 <td>{{ license.serialKey }}</td>
-                <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
+                {% if date(license.validationDate) < date() %}
+                    <td style="color:red;">{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
+                {% endif %}
+                {% if date(license.validationDate) > date() %}
+                    <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
+                {% endif %}
                 <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ license.notes }}</td>
