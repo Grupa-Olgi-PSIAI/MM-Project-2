@@ -43,7 +43,9 @@
                 <td>{{ license.notes }}</td>
                 <td>
                     <a class="material-btn" href="{{ path('license_show', { 'id': license.id }) }}">Szczegóły</a>
-                    <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edycja</a>
+                    {% if is_granted('ROLE_ALLOWED_EDIT_LICENSE') %}
+                        <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edycja</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

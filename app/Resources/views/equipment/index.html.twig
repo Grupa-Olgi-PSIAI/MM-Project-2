@@ -43,7 +43,9 @@
                 <td>{{ equipment.notes }}</td>
                 <td>
                     <a class="material-btn" href="{{ path('equipment_show', { 'id': equipment.id }) }}">Szczegóły</a>
-                    <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edycja</a>
+                    {% if is_granted('ROLE_ALLOWED_EDIT_EQUIPMENT') %}
+                        <a class="material-btn" href="{{ path('equipment_edit', { 'id': equipment.id }) }}">Edycja</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

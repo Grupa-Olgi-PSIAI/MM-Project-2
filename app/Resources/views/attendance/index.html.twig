@@ -31,10 +31,11 @@
                         <li>
                             <a class="material-btn" href="{{ path('attendance_show', { 'id': attendance.id }) }}">Szczegóły</a>
                         </li>
-                        <li>
-                            <a class="material-btn"
-                               href="{{ path('attendance_edit', { 'id': attendance.id }) }}">Edycja</a>
-                        </li>
+                        {% if is_granted('edit', attendance) %}
+                            <li>
+                                <a class="material-btn" href="{{ path('attendance_edit', { 'id': attendance.id }) }}">Edycja</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </td>
             </tr>
