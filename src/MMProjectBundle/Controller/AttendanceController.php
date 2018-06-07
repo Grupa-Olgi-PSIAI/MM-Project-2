@@ -3,6 +3,7 @@
 namespace MMProjectBundle\Controller;
 
 use MMProjectBundle\Entity\Attendance;
+use MMProjectBundle\Voter\AttendanceVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,7 +29,12 @@ class AttendanceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $attendances = $em->getRepository(Attendance::class)->queryAll();
+        if ($this->isGranted('ROLE_ALLOWED_VIEW_ATTENDANCE_OTHERS')) {
+            $attendances = $em->getRepository(Attendance::class)->queryAll();
+        } else {
+            $user = $this->getUser();
+            $attendances = $em->getRepository(Attendance::class)->queryByUser($user);
+        }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -57,6 +63,7 @@ class AttendanceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
             $em = $this->getDoctrine()->getManager();
             $em->persist($attendance);
             $em->flush();
@@ -81,6 +88,8 @@ class AttendanceController extends Controller
      */
     public function showAction(Attendance $attendance)
     {
+        $this->denyAccessUnlessGranted(AttendanceVoter::VIEW, $attendance);
+
         $deleteForm = $this->createDeleteForm($attendance);
 
         return $this->render('attendance/show.html.twig', array(
@@ -101,11 +110,15 @@ class AttendanceController extends Controller
      */
     public function editAction(Request $request, Attendance $attendance)
     {
+        $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
+
         $deleteForm = $this->createDeleteForm($attendance);
         $editForm = $this->createForm('MMProjectBundle\Form\AttendanceType', $attendance);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('attendance_edit', array('id' => $attendance->getId()));
@@ -130,6 +143,8 @@ class AttendanceController extends Controller
      */
     public function deleteAction(Request $request, Attendance $attendance)
     {
+        $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
+
         $form = $this->createDeleteForm($attendance);
         $form->handleRequest($request);
 
