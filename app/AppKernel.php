@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new MMProjectBundle\MMProjectBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Tetranz\Select2EntityBundle\TetranzSelect2EntityBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
