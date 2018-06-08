@@ -9,7 +9,6 @@ services:
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
     mmproject.attendance_voter:
         class: MMProjectBundle\Voter\AttendanceVoter
-        arguments: ['@service_container']
         tags:
             - { name: security.voter }
         public: false

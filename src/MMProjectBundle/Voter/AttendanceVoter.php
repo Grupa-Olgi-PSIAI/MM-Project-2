@@ -5,7 +5,6 @@ namespace MMProjectBundle\Voter;
 
 use MMProjectBundle\Entity\Attendance;
 use MMProjectBundle\Entity\User;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -13,13 +12,6 @@ class AttendanceVoter extends Voter
 {
     const VIEW = 'view';
     const EDIT = 'edit';
-
-    private $authorizationChecker;
-
-    public function __construct(ContainerInterface $serviceContainer)
-    {
-        $this->authorizationChecker = $serviceContainer->get('security.authorization_checker');
-    }
 
     /**
      * Determines if the attribute and subject are supported by this voter.
@@ -72,7 +64,7 @@ class AttendanceVoter extends Voter
 
     private function canView(Attendance $attendance, User $user)
     {
-        if ($this->authorizationChecker->isGranted('ROLE_ALLOWED_VIEW_ATTENDANCE_OTHERS')) {
+        if ($user->hasRole('ROLE_OWNER') || $user->hasRole('ROLE_AUDITOR')) {
             return true;
         } elseif ($attendance->getUser() === $user) {
             return true;
@@ -83,7 +75,7 @@ class AttendanceVoter extends Voter
 
     private function canEdit(Attendance $attendance, User $user)
     {
-        if ($this->authorizationChecker->isGranted('ROLE_ALLOWED_EDIT_ATTENDANCE_OTHERS')) {
+        if ($user->hasRole('ROLE_OWNER')) {
             return true;
         } elseif ($attendance->getUser() === $user) {
             return true;
