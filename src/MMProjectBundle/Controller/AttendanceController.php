@@ -59,10 +59,17 @@ class AttendanceController extends Controller
     public function newAction(Request $request)
     {
         $attendance = new Attendance();
-        $form = $this->createForm('MMProjectBundle\Form\AttendanceType', $attendance);
+        if ($this->isGranted('ROLE_ALLOWED_EDIT_ATTENDANCE_OTHERS')) {
+            $form = $this->createForm('MMProjectBundle\Form\AttendanceType', $attendance);
+        } else {
+            $form = $this->createForm('MMProjectBundle\Form\AttendanceOwnType', $attendance);
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$this->isGranted('ROLE_ALLOWED_EDIT_ATTENDANCE_OTHERS')) {
+                $attendance->setUser($this->getUser());
+            }
             $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
             $em = $this->getDoctrine()->getManager();
             $em->persist($attendance);
@@ -113,10 +120,17 @@ class AttendanceController extends Controller
         $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
 
         $deleteForm = $this->createDeleteForm($attendance);
-        $editForm = $this->createForm('MMProjectBundle\Form\AttendanceType', $attendance);
+        if ($this->isGranted('ROLE_ALLOWED_EDIT_ATTENDANCE_OTHERS')) {
+            $editForm = $this->createForm('MMProjectBundle\Form\AttendanceType', $attendance);
+        } else {
+            $editForm = $this->createForm('MMProjectBundle\Form\AttendanceOwnType', $attendance);
+        }
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if (!$this->isGranted('ROLE_ALLOWED_EDIT_ATTENDANCE_OTHERS')) {
+                $attendance->setUser($this->getUser());
+            }
             $this->denyAccessUnlessGranted(AttendanceVoter::EDIT, $attendance);
 
             $this->getDoctrine()->getManager()->flush();
