@@ -18,44 +18,50 @@
             'license.purchaseDate' : 'purchaseDate'
         }) }}
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>{{ knp_pagination_sortable(pagination, 'Numer', 'license.inventoryNumber') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'license.name') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Klucz seryjny', 'license.serialKey') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Data ważności', 'license.validationDate') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Data wsparcia technicznego', 'license.techSupportEndDate') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Data zakupu', 'license.purchaseDate') }}</th>
-            <th>Notatki</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for license in pagination %}
+    <div class="tbl-header">
+        <table>
+            <thead>
             <tr>
-                <td>{{ license.inventoryNumber }}</td>
-                <td>{{ license.name }}</td>
-                <td>{{ license.serialKey }}</td>
-                {% if date(license.validationDate) < date() %}
-                    <td style="color:red;">{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
-                {% endif %}
-                {% if date(license.validationDate) > date() %}
-                    <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
-                {% endif %}
-                <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ license.notes }}</td>
-                <td>
-                    <a class="material-btn" href="{{ path('license_show', { 'id': license.id }) }}">Szczegóły</a>
-                    {% if is_granted('ROLE_ALLOWED_EDIT_LICENSE') %}
-                        <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edycja</a>
-                    {% endif %}
-                </td>
+                <th>{{ knp_pagination_sortable(pagination, 'Numer', 'license.inventoryNumber') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'license.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Klucz seryjny', 'license.serialKey') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Data ważności', 'license.validationDate') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Data wsparcia technicznego', 'license.techSupportEndDate') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Data zakupu', 'license.purchaseDate') }}</th>
+                <th>Notatki</th>
+                <th>Akcje</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table>
+            <tbody>
+            {% for license in pagination %}
+                <tr>
+                    <td>{{ license.inventoryNumber }}</td>
+                    <td>{{ license.name }}</td>
+                    <td>{{ license.serialKey }}</td>
+                    {% if date(license.validationDate) < date() %}
+                        <td style="color:red;">{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
+                    {% endif %}
+                    {% if date(license.validationDate) > date() %}
+                        <td>{% if license.validationDate %}{{ license.validationDate|date('Y-m-d') }}{% endif %}</td>
+                    {% endif %}
+                    <td>{% if license.techSupportEndDate %}{{ license.techSupportEndDate|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ license.notes }}</td>
+                    <td>
+                        <a class="material-btn" href="{{ path('license_show', { 'id': license.id }) }}">Szczegóły</a>
+                        {% if is_granted('ROLE_ALLOWED_EDIT_LICENSE') %}
+                            <a class="material-btn" href="{{ path('license_edit', { 'id': license.id }) }}">Edycja</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <div>
         {{ knp_pagination_render(pagination) }}
     </div>

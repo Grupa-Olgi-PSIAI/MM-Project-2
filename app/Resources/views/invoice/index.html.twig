@@ -16,47 +16,53 @@
             'invoice.currency' : 'currency'
         }) }}
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>{{ knp_pagination_sortable(pagination, 'number'|trans, 'invoice.number') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'internalNumber'|trans, 'invoice.internalNumber') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'invoiceDate'|trans, 'invoice.invoiceDate') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'amountNet'|trans, 'invoice.amountNet') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'amountGross'|trans, 'invoice.amountGross') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'currency'|trans, 'invoice.currency') }}</th>
-            <th>{{ 'contractor'|trans }}</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% set sumNet = 0 %}
-        {% set sumGross = 0 %}
-        {% for invoice in pagination %}
+    <div class="tbl-header">
+        <table>
+            <thead>
             <tr>
-                <td>{{ invoice.number }}</td>
-                <td>{{ invoice.internalNumber }}</td>
-                <td>{% if invoice.invoiceDate %}{{ invoice.invoiceDate|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ invoice.amountNet }}</td>
-                <td>{{ invoice.amountGross }}</td>
-                <td>{{ invoice.currency }}</td>
-                <td>{% if invoice.contractor %}{{ invoice.contractor.name }}{% endif %}</td>
-                <td>
-                    <a class="material-btn" href="{{ path('invoice_show', { 'id': invoice.id }) }}">Szczegóły</a>
-                    {% if is_granted('ROLE_ALLOWED_EDIT_INVOICE') %}
-                        <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edycja</a>
-                    {% endif %}
-                </td>
+                <th>{{ knp_pagination_sortable(pagination, 'number'|trans, 'invoice.number') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'internalNumber'|trans, 'invoice.internalNumber') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'invoiceDate'|trans, 'invoice.invoiceDate') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'amountNet'|trans, 'invoice.amountNet') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'amountGross'|trans, 'invoice.amountGross') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'currency'|trans, 'invoice.currency') }}</th>
+                <th>{{ 'contractor'|trans }}</th>
+                <th>Akcje</th>
             </tr>
-            {% set sumNet = sumNet + invoice.amountNet %}
-            {% set sumGross = sumGross + invoice.amountGross %}
-        {% endfor %}
-        <tr>
-            <td>Suma netto: {{ sumNet }}</td>
-            <td>Suma brutto: {{ sumGross }}</td>
-        </tr>
-        </tbody>
-    </table>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table>
+            <tbody>
+            {% set sumNet = 0 %}
+            {% set sumGross = 0 %}
+            {% for invoice in pagination %}
+                <tr>
+                    <td>{{ invoice.number }}</td>
+                    <td>{{ invoice.internalNumber }}</td>
+                    <td>{% if invoice.invoiceDate %}{{ invoice.invoiceDate|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ invoice.amountNet }}</td>
+                    <td>{{ invoice.amountGross }}</td>
+                    <td>{{ invoice.currency }}</td>
+                    <td>{% if invoice.contractor %}{{ invoice.contractor.name }}{% endif %}</td>
+                    <td>
+                        <a class="material-btn" href="{{ path('invoice_show', { 'id': invoice.id }) }}">Szczegóły</a>
+                        {% if is_granted('ROLE_ALLOWED_EDIT_INVOICE') %}
+                            <a class="material-btn" href="{{ path('invoice_edit', { 'id': invoice.id }) }}">Edycja</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% set sumNet = sumNet + invoice.amountNet %}
+                {% set sumGross = sumGross + invoice.amountGross %}
+            {% endfor %}
+            <tr>
+                <td>Suma netto: {{ sumNet }}</td>
+                <td>Suma brutto: {{ sumGross }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <div>
         {{ knp_pagination_render(pagination) }}
     </div>

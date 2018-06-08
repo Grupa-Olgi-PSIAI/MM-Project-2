@@ -13,29 +13,37 @@
         {{ knp_pagination_filter(pagination, {'contractor.name' : 'name', 'contractor.vatId' : 'vatId'},
             { 'attr': {'class': 'material-btn' } }) }}
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'contractor.name') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'VAT ID', 'contractor.vatId') }}</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for contractor in pagination %}
+    <div class="tbl-header">
+        <table>
+            <thead>
             <tr>
-                <td>{{ contractor.name }}</td>
-                <td>{{ contractor.vatId }}</td>
-                <td>
-                    <a class="material-btn" href="{{ path('contractor_show', { 'id': contractor.id }) }}">Szczegóły</a>
-                    {% if is_granted('ROLE_ALLOWED_EDIT_CONTRACTOR') %}
-                        <a class="material-btn" href="{{ path('contractor_edit', { 'id': contractor.id }) }}">Edycja</a>
-                    {% endif %}
-                </td>
+                <th>{{ knp_pagination_sortable(pagination, 'Nazwa', 'contractor.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'VAT ID', 'contractor.vatId') }}</th>
+                <th>Akcje</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table>
+            <tbody>
+            {% for contractor in pagination %}
+                <tr>
+                    <td>{{ contractor.name }}</td>
+                    <td>{{ contractor.vatId }}</td>
+                    <td>
+                        <a class="material-btn"
+                           href="{{ path('contractor_show', { 'id': contractor.id }) }}">Szczegóły</a>
+                        {% if is_granted('ROLE_ALLOWED_EDIT_CONTRACTOR') %}
+                            <a class="material-btn"
+                               href="{{ path('contractor_edit', { 'id': contractor.id }) }}">Edycja</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <div>
         {{ knp_pagination_render(pagination) }}
     </div>
