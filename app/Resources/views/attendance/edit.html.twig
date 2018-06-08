@@ -8,18 +8,14 @@
 
 {% block body %}
     {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type="submit" value="Edytuj"/>
+    <div class="material-input">
+        {{ form_widget(edit_form) }}
+    </div>
+    <input class="material-btn" type="submit" value="Edytuj"/>
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('attendance_index') }}">Powrót do listy</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Usuń">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a class="material-btn" href="{{ path('attendance_index') }}">Powrót do listy</a>
+    {{ form_start(delete_form) }}
+    <input class="material-btn" type="submit" value="Usuń">
+    {{ form_end(delete_form) }}
 {% endblock %}

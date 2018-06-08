@@ -25,6 +25,12 @@
             <th>Czas wyjścia</th>
             <td>{% if attendance.timeOut %}{{ attendance.timeOut|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
+        {% if is_granted('ROLE_ALLOWED_VIEW_ATTENDANCE_OTHERS') %}
+            <tr>
+                <th>Pracownik</th>
+                <td>{{ attendance.user.firstName ~ ' ' ~ attendance.user.lastName }}</td>
+            </tr>
+        {% endif %}
         <tr>
             <th>Notatki</th>
             <td>{{ attendance.notes }}</td>

@@ -8,13 +8,11 @@
 
 {% block body %}
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Utwórz"/>
+    <div class="material-input">
+        {{ form_widget(form) }}
+    </div>
+    <input class="material-btn" type="submit" value="Utwórz"/>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('attendance_index') }}">Powrót do listy</a>
-        </li>
-    </ul>
+    <a class="material-btn" href="{{ path('attendance_index') }}">Powrót do listy</a>
 {% endblock %}
