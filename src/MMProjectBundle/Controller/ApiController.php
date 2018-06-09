@@ -32,14 +32,21 @@ class ApiController extends Controller
         $invoicesPerMonth = array();
         foreach ($invoices as $invoice) {
             $date = $invoice->getInvoiceDate()->format('Y-m');
-            if (isset($invoicesPerMonth[$date]['amount'])) {
-                $amount = $invoicesPerMonth[$date]['amount'] + 1;
+            if (isset($invoicesPerMonth[$date])) {
+                $amount = $invoicesPerMonth[$date] + 1;
             } else {
                 $amount = 1;
             }
-            $invoicesPerMonth[$date] = ['amount' => $amount];
+            $invoicesPerMonth[$date] = $amount;
         }
 
-        return new JsonResponse($invoicesPerMonth);
+        $json = array();
+        foreach ($invoicesPerMonth as $key => $value) {
+            $json['invoices'][] = [
+                'month' => $key,
+                'amount' => $value,
+            ];
+        }
+        return new JsonResponse($json);
     }
 }
