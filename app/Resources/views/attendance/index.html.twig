@@ -17,6 +17,7 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Czas wejścia', 'attendance.timeIn') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Czas wyjścia', 'attendance.timeOut') }}</th>
+                <th>Czas pracy</th>
                 {% if is_granted('ROLE_ALLOWED_VIEW_ATTENDANCE_OTHERS') %}
                     <th>Pracownik</th>
                 {% endif %}
@@ -29,10 +30,20 @@
     <div class="tbl-content">
         <table>
             <tbody>
+            {% set totalTime = date('00:00') %}
             {% for attendance in pagination %}
                 <tr>
                     <td>{% if attendance.timeIn %}{{ attendance.timeIn|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if attendance.timeOut %}{{ attendance.timeOut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        {% if attendance.timeIn and attendance.timeOut %}
+                            {% set t = totalTime.add(attendance.timeIn.diff(attendance.timeOut)) %}
+                            {% set timeDiff = attendance.timeIn.diff(attendance.timeOut) %}
+                            {% set hours = timeDiff.h + timeDiff.days * 24 %}
+                            {% set minutes = timeDiff.i %}
+                            {{ "%d:%02d"|format(hours, minutes) }}
+                        {% endif %}
+                    </td>
                     {% if is_granted('ROLE_ALLOWED_VIEW_ATTENDANCE_OTHERS') %}
                         <td>{{ attendance.user.firstName ~ ' ' ~ attendance.user.lastName }}</td>
                     {% endif %}
@@ -52,5 +63,11 @@
     </div>
     <div>
         {{ knp_pagination_render(pagination) }}
+    </div>
+    <div class="tbl-summary">
+        {% set time = date('00:00') %}
+        {% set totalHours = time.diff(totalTime).h + time.diff(totalTime).days * 24 %}
+        {% set totalMinutes = time.diff(totalTime).i %}
+        <p>Łączny czas pracy: {{ "%d:%02d"|format(totalHours, totalMinutes) }}</p>
     </div>
 {% endblock %}

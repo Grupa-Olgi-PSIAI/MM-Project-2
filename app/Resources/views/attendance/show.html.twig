@@ -25,6 +25,17 @@
             <th>Czas wyjścia</th>
             <td>{% if attendance.timeOut %}{{ attendance.timeOut|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
+        <tr>
+            <th>Czas pracy</th>
+            <td>
+                {% if attendance.timeIn and attendance.timeOut %}
+                    {% set timeDiff = attendance.timeIn.diff(attendance.timeOut) %}
+                    {% set hours = timeDiff.h + timeDiff.days * 24 %}
+                    {% set minutes = timeDiff.i %}
+                    {{ "%d:%02d"|format(hours, minutes) }}
+                {% endif %}
+            </td>
+        </tr>
         {% if is_granted('ROLE_ALLOWED_VIEW_ATTENDANCE_OTHERS') %}
             <tr>
                 <th>Pracownik</th>
