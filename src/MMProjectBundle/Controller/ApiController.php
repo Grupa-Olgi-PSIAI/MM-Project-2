@@ -3,8 +3,6 @@
 namespace MMProjectBundle\Controller;
 
 use MMProjectBundle\Entity\Invoice;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +42,41 @@ class ApiController extends Controller
         foreach ($invoicesPerMonth as $key => $value) {
             $json['invoices'][] = [
                 'month' => $key,
+                'amount' => $value,
+            ];
+        }
+        return new JsonResponse($json);
+    }
+
+
+    /**
+     * Lists amount of invoices in each currency
+     *
+     * @Route("/ochrostowska", name="api_invoices_in_currencies")
+     * @Method("GET")
+     *
+     * @return Response
+     */
+    public function getInvoicesInCurrenciesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $invoices = $em->getRepository(Invoice::class)->findAll();
+
+        $invoicesCurrencies = array();
+        foreach ($invoices as $invoice) {
+            $currency = $invoice->getCurrency();
+            if (isset($invoicesCurrencies[$currency])) {
+                $amount = $invoicesCurrencies[$currency] + 1;
+            } else {
+                $amount = 1;
+            }
+            $invoicesCurrencies[$currency] = $amount;
+        }
+
+        $json = array();
+        foreach ($invoicesCurrencies as $key => $value) {
+            $json['invoices'][] = [
+                'currency' => $key,
                 'amount' => $value,
             ];
         }
