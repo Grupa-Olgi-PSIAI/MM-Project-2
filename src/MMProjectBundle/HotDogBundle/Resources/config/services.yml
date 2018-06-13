@@ -1,0 +1,4 @@
+services:
+#    hot_dog.example:
+#        class: MMProjectBundle\HotDogBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
