@@ -84,4 +84,81 @@ class ApiController extends Controller
         }
         return new JsonResponse($json);
     }
+
+    /**
+     * Hotdogs lists
+     *
+     * @Route("/pfrydrych", name="api_hotdogs")
+     * @Method("GET")
+     *
+     * @return Response
+     */
+    public function getHotDogsAction()
+    {
+        $arr = array(
+            [
+                'Name' => 'Ostry hotdog',
+                'Weight' => '300g',
+                'Price' => '6zl'
+            ],
+            [
+                'Name' => 'Łagodny hotdog',
+                'Weight' => '310g',
+                'Price' => '8zl'
+            ],
+            [
+                'Name' => 'Hotdog dla dzieci',
+                'Weight' => '150g',
+                'Price' => '6zl'
+            ],
+            [
+                'Name' => 'Piekielnie ostry hotdog',
+                'Weight' => '300g',
+                'Price' => '10zl'
+            ],
+            [
+                'Name' => 'Piecze trzy razy hotdog',
+                'Weight' => '300g',
+                'Price' => '13zl'
+            ],
+            [
+                'Name' => 'Farmerski hotdog',
+                'Weight' => '500g',
+                'Price' => '60zl'
+            ],
+            [
+                'Name' => 'Anielski hotdog',
+                'Weight' => '300g',
+                'Price' => '10zl'
+            ],
+            [
+                'Name' => 'Męski hotdog',
+                'Weight' => '1000g',
+                'Price' => '12zl'
+            ],
+            [
+                'Name' => 'Żeński hotdog',
+                'Weight' => '300g',
+                'Price' => '6zl'
+            ]
+        ,
+            [
+                'Name' => 'Sportowy hotdog',
+                'Weight' => '600g',
+                'Price' => '16zl'
+            ],
+            [
+                'Name' => 'Informatyczny hotdog',
+                'Weight' => '300g',
+                'Price' => '6zl'
+            ],
+            [
+                'Name' => 'Miły hotdog',
+                'Weight' => '300g',
+                'Price' => '6zl'
+            ]
+        );
+
+        return new JsonResponse($arr);
+    }
 }
