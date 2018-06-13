@@ -21,9 +21,6 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new MMProjectBundle\HotDogBundle\HotDogBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

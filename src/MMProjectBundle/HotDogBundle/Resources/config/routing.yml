@@ -1,8 +1,0 @@
-hot_dog_homepage:
-    path:     /
-    defaults: { _controller: HotDogBundle:Default:index }
-
-hot_dog:
-    resource: "@HotDogBundle/Controller/ApiController.php"
-    prefix: /api/
-    type: rest

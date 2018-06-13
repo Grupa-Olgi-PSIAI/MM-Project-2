@@ -1,7 +1,3 @@
-hot_dog:
-    resource: "@HotDogBundle/Resources/config/routing.yml"
-    prefix:   /
-
 mm_project:
     resource: "@MMProjectBundle/Controller/"
     type:     annotation
