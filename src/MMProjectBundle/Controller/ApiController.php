@@ -97,65 +97,65 @@ class ApiController extends Controller
     {
         $arr = array(
             [
-                'Name' => 'Ostry hotdog',
-                'Weight' => '300g',
-                'Price' => '6zl'
+                'name' => 'Ostry hotdog',
+                'weight' => '300g',
+                'price' => '6zl'
             ],
             [
-                'Name' => 'Łagodny hotdog',
-                'Weight' => '310g',
-                'Price' => '8zl'
+                'name' => 'Łagodny hotdog',
+                'weight' => '310g',
+                'price' => '8zl'
             ],
             [
-                'Name' => 'Hotdog dla dzieci',
-                'Weight' => '150g',
-                'Price' => '6zl'
+                'name' => 'Hotdog dla dzieci',
+                'weight' => '150g',
+                'price' => '6zl'
             ],
             [
-                'Name' => 'Piekielnie ostry hotdog',
-                'Weight' => '300g',
-                'Price' => '10zl'
+                'name' => 'Piekielnie ostry hotdog',
+                'weight' => '300g',
+                'price' => '10zl'
             ],
             [
-                'Name' => 'Piecze trzy razy hotdog',
-                'Weight' => '300g',
-                'Price' => '13zl'
+                'name' => 'Piecze trzy razy hotdog',
+                'weight' => '300g',
+                'price' => '13zl'
             ],
             [
-                'Name' => 'Farmerski hotdog',
-                'Weight' => '500g',
-                'Price' => '60zl'
+                'name' => 'Farmerski hotdog',
+                'weight' => '500g',
+                'price' => '60zl'
             ],
             [
-                'Name' => 'Anielski hotdog',
-                'Weight' => '300g',
-                'Price' => '10zl'
+                'name' => 'Anielski hotdog',
+                'weight' => '300g',
+                'price' => '10zl'
             ],
             [
-                'Name' => 'Męski hotdog',
-                'Weight' => '1000g',
-                'Price' => '12zl'
+                'name' => 'Męski hotdog',
+                'weight' => '1000g',
+                'price' => '12zl'
             ],
             [
-                'Name' => 'Żeński hotdog',
-                'Weight' => '300g',
-                'Price' => '6zl'
+                'name' => 'Żeński hotdog',
+                'weight' => '300g',
+                'price' => '6zl'
             ]
         ,
             [
-                'Name' => 'Sportowy hotdog',
-                'Weight' => '600g',
-                'Price' => '16zl'
+                'name' => 'Sportowy hotdog',
+                'weight' => '600g',
+                'price' => '16zl'
             ],
             [
-                'Name' => 'Informatyczny hotdog',
-                'Weight' => '300g',
-                'Price' => '6zl'
+                'name' => 'Informatyczny hotdog',
+                'weight' => '300g',
+                'price' => '6zl'
             ],
             [
-                'Name' => 'Miły hotdog',
-                'Weight' => '300g',
-                'Price' => '6zl'
+                'name' => 'Miły hotdog',
+                'weight' => '300g',
+                'price' => '6zl'
             ]
         );
 
