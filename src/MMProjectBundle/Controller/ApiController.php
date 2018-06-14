@@ -161,4 +161,61 @@ class ApiController extends Controller
 
         return new JsonResponse($arr);
     }
+
+    /**
+     * shopping list
+     *
+     * @Route("/ppazura", name="api_shopping_list")
+     * @Method("GET")
+     *
+     * @return Response
+     */
+    public function getShoppingListAction()
+    {
+        $shoppingList = array(
+            [
+                'name' => 'liść laurowy',
+                'weight' => '10g',
+                'price' => '1zl'
+            ],
+            [
+                'name' => 'ziele angielskie',
+                'weight' => '33g',
+                'price' => '1zl'
+            ],
+            [
+                'name' => 'główka czerwonej kapusty',
+                'weight' => '910g',
+                'price' => '12zl'
+            ],
+            [
+                'name' => '100 g wędzonego boczku',
+                'weight' => '100g',
+                'price' => '5zl'
+            ],
+            [
+                'name' => 'cebula',
+                'weight' => '100g',
+                'price' => '8zl'
+            ],
+            [
+                'name' => 'ocet winny',
+                'weight' => '100g',
+                'price' => '8zl'
+            ],
+            [
+                'name' => 'sól',
+                'weight' => '5g',
+                'price' => '1zl'
+            ],
+            [
+                'name' => 'pieprz',
+                'weight' => '5g',
+                'price' => '1zl'
+            ]
+
+        );
+
+        return new JsonResponse($shoppingList);
+    }
 }
